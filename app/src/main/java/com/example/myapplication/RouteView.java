@@ -15,7 +15,7 @@ public class RouteView extends AppCompatActivity {
         setContentView(R.layout.activity_routeview);
 
         Intent incomingIntent = getIntent();
-        ArrayList<String> list = incomingIntent.getStringArrayListExtra("name");
+        ArrayList<String> list2 = incomingIntent.getStringArrayListExtra("name");
         //calculateSSSP(list);
     }
 

@@ -11,6 +11,7 @@ Wing It aims at both seasoned and novice travellers who may be unsatisfied with 
 ## Project Scope
 This project will consist of developing an Android application largely developing using Google's API (Routes, Directions, Places API). A minimal viable product should be completed by Milestone 2. 
 
+###### This sounds familar!
 Disclaimer: Wing It is developed with the intention of it being a supplement - not a one-stop application service for travellers to gather information, book acommodations, and plan their itineraries with. 
 
 ## Installation
@@ -52,7 +53,7 @@ The current understanding is that any list ADTs passed using ```intent.putExtra(
 - As a user, I want to be able to view a list of the places I have added so that I can review them.
 Core feature 2: the current implementation of this feature is simple and naive as of Milestone 2, we simply iterated every location stored in the ArrayList and extracted the address of each location through reverse geocoding (obtaining a readable street address from a pair of latitude and longitude). Each of the street addresses is then added to a String variable, which is then used to change the text of the TextView widget: ```text.setText(final_text)```. 
 
-***Issue faced #2***: We were unable to obtain a landmark name of a place of interest. For example, if a user were to key in "bedok mall" in the search field, the API would accurately return the intended location, however, we were not able to obtain back "Bedok Mall". The closest substitute we found and are currently using is obtaining the street address: 311 New Upper Changi Rd, Singapore 467360, and is done using: ```to_print[i] = addressList.get(0).getAddressLine(0)```. This makes it difficult for users to identify the place of interest (especially since they are tourists). 
+**Issue faced #2**: We were unable to obtain a landmark name of a place of interest. For example, if a user were to key in "bedok mall" in the search field, the API would accurately return the intended location, however, we were not able to obtain back "Bedok Mall". The closest substitute we found and are currently using is obtaining the street address: 311 New Upper Changi Rd, Singapore 467360, and is done using: ```to_print[i] = addressList.get(0).getAddressLine(0)```. This makes it difficult for users to identify the place of interest (especially since they are tourists). 
 
 - As a user, I want to be able to obtain a daily itinerary that starts from my place of accomodations.
 

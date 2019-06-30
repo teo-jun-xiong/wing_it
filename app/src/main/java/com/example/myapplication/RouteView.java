@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class RouteView extends AppCompatActivity {
 
+    // this class should show the order for users to proceed their days in
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

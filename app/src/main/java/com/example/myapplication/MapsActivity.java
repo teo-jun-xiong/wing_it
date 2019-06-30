@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,13 +20,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private static final String TAG = "";
-    private GoogleMap mMap;
+    private GoogleMap map;
     private ArrayList<String> list = new ArrayList<>();
 
     @Override
@@ -43,12 +40,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+        map = googleMap;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             return;
         }
-        mMap.setMyLocationEnabled(true);
+        map.setMyLocationEnabled(true);
     }
 
     public void onMapAdd(View view) {
@@ -66,8 +63,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             Address address = addressList.get(0);
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(latLng).title(address.getAddressLine(0)));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
+            map.addMarker(new MarkerOptions().position(latLng).title(address.getAddressLine(0)));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
             list.add(address.getAddressLine(0));
 
         }

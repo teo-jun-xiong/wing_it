@@ -60,3 +60,6 @@ Core feature 2: the current implementation of this feature is simple and naive a
 - As a user, I want to be able to obtain a daily itinerary that starts from my place of accomodations.
 
 - As a user, I want to include the time I wish to spend at each place of interest so that I can maximise my time overseas. 
+
+## Program Flowchart
+![Image of flowchart](https://i.imgur.com/dZyoRoC.png) 

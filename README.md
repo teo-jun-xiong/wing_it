@@ -1,4 +1,4 @@
-# Wing It, a Travel Itineray Planner
+# Wing It, a Travel Itinerary Planner
 Wing It is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. 
 
 ## Problem Motivations

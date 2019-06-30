@@ -72,7 +72,7 @@ The current understanding is that any list ADTs passed using ```intent.putExtra(
 - Single Responsiblity Principle
 Every class is assigned only a single functionality. ```MapActivity``` is responsible for loading the map which allows users to add places of interest; ```ListView``` is responsible for displaying the current list of places of interest to the users; ```RouteView``` is responsible for displaying a generated route for the users' itinerary. 
 - Open/ Closed Principle
-This principle has not been employed as we are not familiar or confident enough with Object Oriented Prrogramming principles to code with it in mind.
+This principle has not been employed as we are not familiar or confident enough with Object Oriented Programming principles to code with it in mind.
 - Liskov Substitution Principle
 This principle is not employed as our Android app is not complicated and at most one instance of any object is created (as far as we are aware). We will employ this principle should there be increased callbacks of object instantiation in the future.
 - Interface Segregation Principle 

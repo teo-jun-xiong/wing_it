@@ -14,11 +14,12 @@ This project will consist of developing an Android application largely developin
 ###### This sounds familar!
 Disclaimer: Wing It is developed with the intention of it being a supplement - not a one-stop application service for travellers to gather information, book acommodations, and plan their itineraries with. 
 
-One of the most widely used trip planner, is one that forms the foundation of many popular trip planners out there is Google Maps. There are many powerful features that it provides: fastest routes, shortest routes, Google Trips. It is admittedly simple to draw parallels from Google Trips and Wing It 
+One of the most widely used trip planner, is one that forms the foundation of many popular trip planners out there is Google Maps. There are many powerful features that it provides: fastest routes, shortest routes, Google Trips. It is admittedly simple to draw parallels from Google Trips and Wing It, but the difference between the two is what makes Wing It a great supplementary tool for travellers: timme. Building upon Google Trips' amazing functionalities, we want to include the ability for users to include the duration they wish to stay at a certain location, to create an itinerary that is centered around making the most of their limited time overseas. 
 
 ## Installation
 
 ## Usage
+__to include screenshots__ 
 
 ## User stories and Core Features
 - As a user, I want to be able the add places of interest so that I can visit them during my trip.

@@ -23,6 +23,7 @@ __to include screenshots__
 
 ## User stories and Core Features
 - As a user, I want to be able the add places of interest so that I can visit them during my trip.
+
 **Core feature 1**: This feature comes in 2 parts: searching for a place of interest, and adding that to a list storing all the addded places of interest. 
 
 As of Milestone 2, searching for a place of interest is implemented by storing the user's search text and passing it through a Geocoder object, which obtains a list of possible addresses. 

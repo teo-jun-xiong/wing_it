@@ -64,3 +64,7 @@ Core feature 2: the current implementation of this feature is simple and naive a
 
 ## Program Flowchart
 ![Image of flowchart](https://i.imgur.com/dZyoRoC.png) 
+
+## Software Development Principles
+
+## Development Plan towards Milestone 3

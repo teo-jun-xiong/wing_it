@@ -65,6 +65,17 @@ Core feature 2: the current implementation of this feature is simple and naive a
 ## Program Flowchart
 ![Image of flowchart](https://i.imgur.com/dZyoRoC.png) 
 
-## Software Development Principles
+## Software Engineering Principles Employed
+##### S.O.L.I.D. 
+- Single Responsiblity Principle
+Every class is assigned only a single functionality. ```MapActivity``` is responsible for loading the map which allows users to add places of interest; ```ListView``` is responsible for displaying the current list of places of interest to the users; ```RouteView``` is responsible for displaying a generated route for the users' itinerary. 
+- Open/ Closed Principle
+This principle has not been employed as we are not familiar or confident enough with Object Oriented Prrogramming principles to code with it in mind.
+- Liskov Substitution Principle
+This principle is not employed as our Android app is not complicated and at most one instance of any object is created (as far as we are aware). We will employ this principle should there be increased callbacks of object instantiation in the future.
+- Interface Segregation Principle 
+No interface implemented.
+- Dependency Inversion Principle
+No interface implemented, although its importance is appreciated and will be taken note of once we are more advanced in the development of the app. 
 
 ## Development Plan towards Milestone 3

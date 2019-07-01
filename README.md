@@ -22,6 +22,8 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 | Screenshot | Explanation |
 |---|---|
 |![Screenshot 1](https://i.imgur.com/pnC9Q1w.jpg)| <ul><li>1.1. Allows user to center the map on their current location.</li><li>1.2. Allows user to zoom in (and out).</li><li>1.3. Search field for users to input to search for a place of interest.</li><li>1.4. This button allows the user to add the place of interest **after** typing it in the search field (1.3).</li><li>1.5. This button shows the places of interest the user has input, and brings it to the next screen.</li></ul> |
+|![Screenshot 2](https://i.imgur.com/R0AByKf.png)| <ul><li>2.1. Displays a list of the places of interest that the user has input.</li><li>2.2. Clicking this button will bring the user to the next screen. We intend to add the delete functionality in this screen as it seems rather intuitive.</li></ul>|
+|![Screenshot 3](https://i.imgur.com/EVJYCYl.png)| <ul><li>This screen is underdeveloped, but the general idea is that it will display a day to day itinerary, or a map view with ploylines showing which routes to go, or both.</li></ul>|
 
 ## User Stories and Core Features
 - As a user, I want to be able the add places of interest so that I can visit them during my trip.

@@ -21,7 +21,7 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 ## Usage
 | Screenshot | Explanation |
 |---|---|
-|![Screenshot 1](https://i.imgur.com/CnqKk10.jpg)| abc |
+|![Screenshot 1](https://i.imgur.com/pnC9Q1w.jpg)| 1. Allows users to center the map on their current location 2. sada |
 
 ## User Stories and Core Features
 - As a user, I want to be able the add places of interest so that I can visit them during my trip.

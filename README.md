@@ -81,10 +81,10 @@ No interface implemented.
 No interface implemented, although its importance is appreciated and will be taken note of once we are more advanced in the development of the app. 
 
 ##### D.R.Y. (Don't Repeat Yourself) 
-There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, we plan to streamline. We need to figure out 
+There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, whcih we plan to streamline. We need to figure out a better way of passing data from one Java file to another, or to store it in a database using mySQL which would require extra time to learn.  
 
 ##### K.I.S.S. (Keep It Simple, Stupid)
 Our code is coded such that it is simple to read without in-depth knowledge of the context, moreover, comments are inserted to clarify on methods that may be unclear. 
 
 ## Development Plan towards Milestone 3
-Following from the core features section, we have two core features that are yet to be implemented: deleting, viewing a daily itinerary, and including the time that a user wishes to spend at a pace of interest. These core features are listed in order of increasing priority, as we believe that the defining point of Wing It is its ability to input the intended duration.  
+Following from the core features section, we have two core features that are yet to be implemented: deleting, viewing a daily itinerary, and including the time that a user wishes to spend at a pace of interest. These core features are listed in order of increasing priority, as we believe that the defining point of Wing It is its ability to input the intended duration. We aim to also solve the issues faced during the duration of milestone 2 in hopes to be able to make Wing It user-friendly and easy to understand. Implementation of Google's Distance Matrix has proven an issue for us close to the end of Milestone 2 but we are confident that this will be solved by milestone 3 with deeper understanding of Google's developer guides, and under the guidance of our advisor.

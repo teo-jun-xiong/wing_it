@@ -19,7 +19,9 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 ## Installation
 
 ## Usage
-__to include screenshots__ 
+| Screenshot | Explanation |
+|---|---|
+|![Screenshot 1](https://imgur.com/a/JDlRUHt)| abc |
 
 ## User Stories and Core Features
 - As a user, I want to be able the add places of interest so that I can visit them during my trip.
@@ -87,4 +89,14 @@ There is no repeated code apart from calling ```Geocoder``` to obtain the inform
 Our code is coded such that it is simple to read without in-depth knowledge of the context, moreover, comments are inserted to clarify on methods that may be unclear. 
 
 ## Development Plan towards Milestone 3
+- [ ] Implement **delete** functionality
+- [ ] Implement **daily itinerary**
+- [ ] Devise SSSP algorithm
+- [ ] Implement time as a factor rather than distance for SSSP 
+- [ ] \(Optional) UI/ user-friendlyness improvement
+- [ ] Debugging
+
 Following from the core features section, we have two core features that are yet to be implemented: deleting, viewing a daily itinerary, and including the time that a user wishes to spend at a pace of interest. These core features are listed in order of increasing priority, as we believe that the defining point of Wing It is its ability to input the intended duration. We aim to also solve the issues faced during the duration of milestone 2 in hopes to be able to make Wing It user-friendly and easy to understand. Implementation of Google's Distance Matrix has proven an issue for us close to the end of Milestone 2 but we are confident that this will be solved by milestone 3 with deeper understanding of Google's developer guides, and under the guidance of our advisor.
+
+## Credits
+SRIVASTAVA for https://github.com/vastavch/GoogleMapsDistanceMatrixAPI_Demo, which as of Milestone 2, we have largely incorporated into the code. 

@@ -2,7 +2,7 @@
 Wing It is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. 
 
 ## Problem Motivations
-Being avid, wanderlust-filled, millennials who to love to travel, we often encounter issues whereby we have thirty places of interest, and only five days to squeeze all of them in. Due to inefficient planning, the trip often ends up in one of two ways: visiting every place of interest, but only being able to fork out a tiny amount of time at each place, or being only able to visit a handful of places. These two cases can be attributed to the same cause: exceedingly inefficient itinerary planning.
+Being avid, wanderlust-filled millennials who to love to travel, we often encounter issues whereby we have thirty places of interest, and only five days to squeeze all of them in. Due to inefficient planning, the trip often ends up in one of two ways: visiting every place of interest, but only being able to fork out a tiny amount of time at each place, or being only able to visit a handful of places. These two cases can be attributed to the same cause: exceedingly inefficient itinerary planning.
 
 ## Target Audience
 This app is intended for usage on Android devices running on Android 4.4 (Kitkat) and above.  

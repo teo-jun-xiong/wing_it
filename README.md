@@ -21,7 +21,7 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 ## Usage
 | Screenshot | Explanation |
 |---|---|
-|![Screenshot 1](https://imgur.com/a/JDlRUHt)| abc |
+|![Screenshot 1](https://i.imgur.com/gVH7MYH.png| abc |
 
 ## User Stories and Core Features
 - As a user, I want to be able the add places of interest so that I can visit them during my trip.

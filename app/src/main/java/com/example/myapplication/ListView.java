@@ -31,7 +31,7 @@ public class ListView extends AppCompatActivity {
         TextView text = findViewById(R.id.textView2);
         List<Address> addressList = null;
         String[] to_print = new String[list.size()];
-        String final_text = "";
+        StringBuilder final_text = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
             String temp = list.get(i);
             if (temp != null || !temp.equals("")) {
@@ -44,13 +44,14 @@ public class ListView extends AppCompatActivity {
                 }
             }
 
-            to_print[i] = addressList.get(0).getAddressLine(0);
+            to_print[i] ="- " + addressList.get(0).getAddressLine(0) + "\n";
         }
 
         for (int j = 0; j < list.size(); j++){
-            final_text = final_text + "\n" + to_print[j];
+
+            final_text.append(to_print[j]);
         }
-        text.setText(final_text);
+        text.setText(final_text.toString());
     }
 
     public void onGenerate(View view) {

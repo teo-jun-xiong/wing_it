@@ -18,9 +18,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Created by SRIVASTAVA on 1/9/2016.
- */
 /*The instance of this class is called by "MainActivty",to get the time taken reach the destination from Google Distance Matrix API in background.
   This class contains interface "Geo" to call the function setDouble(String) defined in "MainActivity.class" to display the result.*/
 public class GeoTask extends AsyncTask<String, Void, String> {

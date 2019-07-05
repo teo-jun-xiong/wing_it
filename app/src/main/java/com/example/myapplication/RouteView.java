@@ -1,10 +1,10 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,10 +37,11 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void setDouble(String result) {
-        String res[] = result.split(",");
-        Double min = Double.parseDouble(res[0]) / 60;
+        String[] res = result.split(",");
+        double min = Double.parseDouble(res[0]) / 60;
         int dist = Integer.parseInt(res[1]) / 1000;
         textView.setText("Duration= " + (int) (min / 60) + " hr " + (int) (min % 60) + " mins\n" + "Distance= " + dist + " kilometers");
 

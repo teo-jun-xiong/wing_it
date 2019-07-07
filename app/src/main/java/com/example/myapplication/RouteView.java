@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/*
+This class shows the user the calculated itinerary and returns a view back.
+ */
+
 public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     // this class should show the order for users to proceed their days in
@@ -28,8 +32,10 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
         calculateSSSP(incoming_List);
     }
 
+    // this function currently takes the first 2 input locations and adds them to the URL,
+    // which is then executed by initialising a new Geotask object with the URL as the parameter
+    // TODO: include the entire list and obtain the SSSP algo
     private void calculateSSSP(ArrayList<String> list) {
-
         str_from = list.get(0);
         str_to = list.get(1);
         String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
@@ -37,6 +43,8 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     }
 
+
+    // this function shows the distance between 2 locations, temporary function to test
     @SuppressLint("SetTextI18n")
     @Override
     public void setDouble(String result) {

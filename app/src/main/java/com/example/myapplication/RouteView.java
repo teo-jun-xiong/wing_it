@@ -19,6 +19,8 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     String str_from, str_to;
     TextView textView;
+    int[][] adj_mtx;
+    int duration_btn_points;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,29 +31,51 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
         Intent incomingIntent = getIntent();
         ArrayList<String> incoming_List = incomingIntent.getStringArrayListExtra("name");
-        calculateSSSP(incoming_List);
+        processData(incoming_List, 0);
+        executeSSSP(incoming_List);
     }
 
     // this function currently takes the first 2 input locations and adds them to the URL,
     // which is then executed by initialising a new Geotask object with the URL as the parameter
     // TODO: include the entire list and obtain the SSSP algo
-    private void calculateSSSP(ArrayList<String> list) {
-        str_from = list.get(0);
-        str_to = list.get(1);
-        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
-        new GeoTask(RouteView.this).execute(url);
+    private void processData(ArrayList<String> list, int start) {
 
+        adj_mtx = new int[list.size()][list.size()];
+
+        // store data in adj_mtx
+        for (int i = 0; i < list.size() - 1; i++)
+            for (int j = i + 1; j < list.size(); j++) {
+                str_from = list.get(i);
+                str_to = list.get(j);
+                String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
+                new GeoTask(RouteView.this).execute(url);
+                adj_mtx[i][j] = duration_btn_points;
+                adj_mtx[j][i] = duration_btn_points; System.out.println("processdata");
+            }
+
+        // execute SSSP
     }
 
+    // temporary: set textview to all the distances
+    private void executeSSSP(ArrayList<String> list) {
+        StringBuilder to_show = new StringBuilder();
+
+        for (int a = 0; a < list.size(); a++){
+            for (int b = 0; b < list.size(); b++){
+                to_show.append(adj_mtx[a][b]);
+            }
+            to_show.append("\n");
+        } System.out.println(adj_mtx[0][1]);
+
+        textView.setText(to_show.toString());
+    }
 
     // this function shows the distance between 2 locations, temporary function to test
     @SuppressLint("SetTextI18n")
     @Override
-    public void setDouble(String result) {
+    public void store_in_adj_mtx(String result) {
         String[] res = result.split(",");
-        double min = Double.parseDouble(res[0]) / 60;
-        int dist = Integer.parseInt(res[1]) / 1000;
-        textView.setText("Duration= " + (int) (min / 60) + " hr " + (int) (min % 60) + " mins\n" + "Distance= " + dist + " kilometers");
-
+        duration_btn_points = (int)Double.parseDouble(res[0]) / 60; System.out.println("store_in_...");
+        // int dist = Integer.parseInt(res[1]) / 1000;
     }
 }

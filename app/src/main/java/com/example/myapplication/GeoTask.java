@@ -19,13 +19,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /*The instance of this class is called by "MainActivty",to get the time taken reach the destination from Google Distance Matrix API in background.
-  This class contains interface "Geo" to call the function setDouble(String) defined in "MainActivity.class" to display the result.
+  This class contains interface "Geo" to call the function store_in_adj_mtx(String) defined in "MainActivity.class" to display the result.
   */
 public class GeoTask extends AsyncTask<String, Void, String> {
     private ProgressDialog pd;
     @SuppressLint("StaticFieldLeak")
     private Context mContext;
-    Double duration;
+    // Double duration;
     private Geo geo1;
 
     //constructor is used to get the context.
@@ -44,12 +44,12 @@ public class GeoTask extends AsyncTask<String, Void, String> {
         pd.show();
     }
 
-    //This function is executed after the execution of "doInBackground(String...params)" to dismiss the displayed progress dialog and call "setDouble(Double)" defined in "MainActivity.java"
+    //This function is executed after the execution of "doInBackground(String...params)" to dismiss the displayed progress dialog and call "store_in_adj_mtx(Double)" defined in "MainActivity.java"
     @Override
     protected void onPostExecute(String aDouble) {
         super.onPostExecute(aDouble);
         if (aDouble != null) {
-            geo1.setDouble(aDouble);
+            geo1.store_in_adj_mtx(aDouble);
             pd.dismiss();
         } else
             Toast.makeText(mContext, "Error4!Please Try Again with proper values", Toast.LENGTH_SHORT).show();
@@ -102,7 +102,7 @@ public class GeoTask extends AsyncTask<String, Void, String> {
     }
 
     interface Geo {
-        void setDouble(String min);
+        void store_in_adj_mtx(String min);
     }
 
 }

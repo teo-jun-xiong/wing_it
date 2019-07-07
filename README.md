@@ -56,7 +56,7 @@ EditText locationSearch = findViewById(R.id.editText);
 
 - **Issue faced #1**: Despite having the null check in ```if (location != null || !location.equals(""))```, the app crashes when the search bar is empty, and the "ADD" button is clicked. While this issue is does not hinder the functionality of the app, it can cause some unintended crashes when the "ADD" button is accidentally pressed. Low priority. 
 
-**_As a user, I want to be able to delete places of interest that I no longer wish to visit.**_
+**_As a user, I want to be able to delete places of interest that I no longer wish to visit._**
 
 - As of Milestone 2, this basic feature has yet to be implemented, however, a possible way would be to use a hashset instead, and then remove the placce of interest from the hashset. A consideration would be that the current implementation of passing the list of places of interests to other Java classes are as such:
 ```
@@ -66,17 +66,17 @@ startActivity(intent);
 ``` 
 - The current understanding is that any list ADTs passed using ```intent.putExtra("name", list)``` would automatically be converted into an ArrayList, and that there is no such method to pass a hashset. However, at our current implementation using an ArrayList, it is still possible for us to remove, albeit being slightly inefficient. 
 
-**_As a user, I want to be able to view a list of the places I have added so that I can review them.**_
+**_As a user, I want to be able to view a list of the places I have added so that I can review them._**
 
 - **Core feature 2**: the current implementation of this feature is simple and naive as of Milestone 2, we simply iterated every location stored in the ArrayList and extracted the address of each location through reverse geocoding (obtaining a readable street address from a pair of latitude and longitude). Each of the street addresses is then added to a String variable, which is then used to change the text of the TextView widget: ```text.setText(final_text)```. 
 
 - **Issue faced #2**: We were unable to obtain a landmark name of a place of interest. For example, if a user were to key in "bedok mall" in the search field, the API would accurately return the intended location, however, we were not able to obtain back "Bedok Mall". The closest substitute we found and are currently using is obtaining the street address: 311 New Upper Changi Rd, Singapore 467360, and is done using: ```to_print[i] = addressList.get(0).getAddressLine(0)```. This makes it difficult for users to identify the place of interest (especially since they are tourists). 
 
-**_As a user, I want to be able to obtain a daily itinerary that starts from my place of accomodations.**_
+**_As a user, I want to be able to obtain a daily itinerary that starts from my place of accomodations._**
 
 - **Issued faced #3**: When we intended to increase the scale of obtaining the result from the Google Maps API using a URL request
 
-**_As a user, I want to include the time I wish to spend at each place of interest so that I can maximise my time overseas.**_
+**_As a user, I want to include the time I wish to spend at each place of interest so that I can maximise my time overseas._**
 
 
 ## Program Flowchart

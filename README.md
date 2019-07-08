@@ -38,7 +38,7 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 - **Core feature 1**: This feature comes in 2 parts: searching for a place of interest, and adding that to a list storing all the addded places of interest. 
 
 - As of Milestone 2, searching for a place of interest is implemented by storing the user's search text and passing it through a Geocoder object, which obtains a list of possible addresses. 
-```
+```java
 EditText locationSearch = findViewById(R.id.editText);
         String location = locationSearch.getText().toString();
         List<Address> addressList = null;
@@ -59,7 +59,7 @@ EditText locationSearch = findViewById(R.id.editText);
 **_As a user, I want to be able to delete places of interest that I no longer wish to visit._**
 
 - As of Milestone 2, this basic feature has yet to be implemented, however, a possible way would be to use a hashset instead, and then remove the placce of interest from the hashset. A consideration would be that the current implementation of passing the list of places of interests to other Java classes are as such:
-```
+```java
 Intent intent = new Intent(this, ListView.class);
 intent.putExtra("name", list);
 startActivity(intent);

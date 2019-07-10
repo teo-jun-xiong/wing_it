@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /*
 This class shows the user the calculated itinerary and returns a view back.
@@ -21,10 +23,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     TextView textView;
     int[][] adj_mtx;
     int duration_btn_points;
-    int row = 0;
-    int col = 0;
-    int limit;
-    int count = 0;
+    Queue<Row_Col_Pair> stk = new LinkedList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,11 +44,11 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     private void processData(ArrayList<String> list, int start) {
 
         adj_mtx = new int[list.size()][list.size()];
-        limit = (int) (0.5 * list.size() * (list.size() - 1));
 
         // store data in adj_mtx
         for (int i = 0; i < list.size() - 1; i++)
-            for (int j = i + 1; j < list.size(); j++) {
+            for (int j = i + 1; i != j && j < list.size(); j++) {
+                stk.add(new Row_Col_Pair(i, j)); System.out.println(i + " " + j + stk.peek().get_row() + " " + stk.peek().get_col());
                 str_from = list.get(i);
                 str_to = list.get(j);
                 String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
@@ -80,27 +79,15 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     public void store_in_adj_mtx(String result) {
         String[] res = result.split(",");
         duration_btn_points = (int) Double.parseDouble(res[0]) / 60;
-        System.out.println(duration_btn_points + " " + row + " " + col + " " + count + " " + limit);
 
-        if (col == adj_mtx.length - 1 && row < adj_mtx.length - 1) {      // previously processed data was in last column (and not in the last row)
-            col = 0;
-            row++;
-            adj_mtx[row][col] = duration_btn_points;
-            adj_mtx[col][row] = duration_btn_points;
-            count++;
-            System.out.println("first");
-            // previously processed data was in the last row and 2nd last column
-            // prints out the matrix
-
-        } else {
-            col++;
-            count++;
-            adj_mtx[row][col] = duration_btn_points;
-            adj_mtx[col][row] = duration_btn_points;
-            System.out.println("third");
+        if (stk.size() != 0) {
+            Row_Col_Pair temp_pair = stk.poll();
+            int temp_r = temp_pair.get_row();
+            int temp_c = temp_pair.get_col();
+            adj_mtx[temp_r][temp_c] = duration_btn_points;
+            adj_mtx[temp_c][temp_r] = duration_btn_points;
         }
-
-        if (count == limit){
+        if (stk.isEmpty()){
             printMatrix();
         }
     }
@@ -112,8 +99,10 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
         for (int a = 0; a < adj_mtx.length; a++) {
             for (int b = 0; b < adj_mtx.length; b++) {
                 toShow.append(adj_mtx[a][b]).append(" ");
+                System.out.print(adj_mtx[a][b] + " ");
             }
             toShow.append("\n");
+            System.out.println();
         }
 
         textView.setText(toShow);

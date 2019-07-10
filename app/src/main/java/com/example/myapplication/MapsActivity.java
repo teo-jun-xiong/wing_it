@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
@@ -50,6 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         map.getUiSettings().setZoomControlsEnabled(true);
+        map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         // checks if permission for location is given
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

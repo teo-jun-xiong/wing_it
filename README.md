@@ -74,7 +74,7 @@ startActivity(intent);
 
 **_As a user, I want to be able to obtain a daily itinerary that starts from my place of accomodations._**
 
-- **Issued faced #3**: When we intended to increase the scale of obtaining the result from the Google Maps API using a URL request
+- **Issued faced #3**: When we intended to increase the scale of obtaining the result from the Google Maps API using a URL request, we encountered an issue where the GeoTask's ```execute()``` occurs in the background and not concurrently after it was called in ```RouteView```. Found out that this was a result of ```AsyncTask``` utilising threads. Previously, we used if-else to circumvent this, which proved to be too complex and confusing. Switched to a ```Queue``` to store the row and column pair, and when the background task is complete, it would pop the top of the queue. We found this to be a much simpler way to store the data in the adjacency matrix. 
 
 **_As a user, I want to include the time I wish to spend at each place of interest so that I can maximise my time overseas._**
 
@@ -84,7 +84,9 @@ startActivity(intent);
 
 
 ## Software Engineering Principles Employed
-##### S.O.L.I.D. 
+<details>
+        <summary>S.O.L.I.D.</summary>
+        <br>
 - Single Responsiblity Principle
 Every class is assigned only a single functionality. ```MapActivity``` is responsible for loading the map which allows users to add places of interest; ```ListView``` is responsible for displaying the current list of places of interest to the users; ```RouteView``` is responsible for displaying a generated route for the users' itinerary. 
 - Open/ Closed Principle
@@ -95,21 +97,28 @@ This principle is not employed as our Android app is not complicated and at most
 No interface implemented.
 - Dependency Inversion Principle
 No interface implemented, although its importance is appreciated and will be taken note of once we are more advanced in the development of the app. 
+        </details>
+
+<details>
+        <summary>D.R.Y. (Don't Repeat Yourself)</summary>
+        <br>
+There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, whcih we plan to streamline. We need to figure out a better way of passing data from one Java file to another, or to store it in a database using mySQL which would require extra time to learn. 
+        </details>
 
 
-##### D.R.Y. (Don't Repeat Yourself) 
-There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, whcih we plan to streamline. We need to figure out a better way of passing data from one Java file to another, or to store it in a database using mySQL which would require extra time to learn.  
-
-
-##### K.I.S.S. (Keep It Simple, Stupid)
+<details>
+        <summary>K.I.S.S. (Keep It Simple, Stupid
+        0</summary>
+        <br>
 Our code is coded such that it is simple to read without in-depth knowledge of the context, moreover, comments are inserted to clarify on methods that may be unclear. 
+        </details>
 
 
 ## Development Plan towards Milestone 3
 - [ ] Implement **delete** functionality
 - [ ] Implement **daily itinerary**
 - [ ] Devise SSSP algorithm
-- [ ] Implement time as a factor rather than distance for SSSP 
+- [x] Implement time as a factor rather than distance for SSSP 
 - [ ] \(Optional) UI/ user-friendlyness improvement
 - [ ] Debugging
 

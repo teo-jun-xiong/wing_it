@@ -21,6 +21,10 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     TextView textView;
     int[][] adj_mtx;
     int duration_btn_points;
+    int row = 0;
+    int col = 0;
+    int limit;
+    int count = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
         Intent incomingIntent = getIntent();
         ArrayList<String> incoming_List = incomingIntent.getStringArrayListExtra("name");
         processData(incoming_List, 0);
-        executeSSSP(incoming_List);
+        // executeSSSP(incoming_List);
     }
 
     // this function currently takes the first 2 input locations and adds them to the URL,
@@ -41,6 +45,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     private void processData(ArrayList<String> list, int start) {
 
         adj_mtx = new int[list.size()][list.size()];
+        limit = (int) (0.5 * list.size() * (list.size() - 1));
 
         // store data in adj_mtx
         for (int i = 0; i < list.size() - 1; i++)
@@ -49,8 +54,6 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
                 str_to = list.get(j);
                 String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
                 new GeoTask(RouteView.this).execute(url);
-                adj_mtx[i][j] = duration_btn_points;
-                adj_mtx[j][i] = duration_btn_points; System.out.println("processdata");
             }
 
         // execute SSSP
@@ -60,12 +63,13 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     private void executeSSSP(ArrayList<String> list) {
         StringBuilder to_show = new StringBuilder();
 
-        for (int a = 0; a < list.size(); a++){
-            for (int b = 0; b < list.size(); b++){
+        for (int a = 0; a < list.size(); a++) {
+            for (int b = 0; b < list.size(); b++) {
                 to_show.append(adj_mtx[a][b]);
             }
             to_show.append("\n");
-        } System.out.println(adj_mtx[0][1]);
+        }
+        System.out.println(adj_mtx[0][1]);
 
         textView.setText(to_show.toString());
     }
@@ -75,7 +79,43 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     @Override
     public void store_in_adj_mtx(String result) {
         String[] res = result.split(",");
-        duration_btn_points = (int)Double.parseDouble(res[0]) / 60; System.out.println("store_in_...");
-        // int dist = Integer.parseInt(res[1]) / 1000;
+        duration_btn_points = (int) Double.parseDouble(res[0]) / 60;
+        System.out.println(duration_btn_points + " " + row + " " + col + " " + count + " " + limit);
+
+        if (col == adj_mtx.length - 1 && row < adj_mtx.length - 1) {      // previously processed data was in last column (and not in the last row)
+            col = 0;
+            row++;
+            adj_mtx[row][col] = duration_btn_points;
+            adj_mtx[col][row] = duration_btn_points;
+            count++;
+            System.out.println("first");
+            // previously processed data was in the last row and 2nd last column
+            // prints out the matrix
+
+        } else {
+            col++;
+            count++;
+            adj_mtx[row][col] = duration_btn_points;
+            adj_mtx[col][row] = duration_btn_points;
+            System.out.println("third");
+        }
+
+        if (count == limit){
+            printMatrix();
+        }
+    }
+
+    private void printMatrix() {
+        TextView textView = findViewById(R.id.SSSPtext);
+        StringBuilder toShow = new StringBuilder();
+
+        for (int a = 0; a < adj_mtx.length; a++) {
+            for (int b = 0; b < adj_mtx.length; b++) {
+                toShow.append(adj_mtx[a][b]).append(" ");
+            }
+            toShow.append("\n");
+        }
+
+        textView.setText(toShow);
     }
 }

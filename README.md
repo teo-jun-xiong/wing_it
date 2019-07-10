@@ -38,6 +38,10 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 - **Core feature 1**: This feature comes in 2 parts: searching for a place of interest, and adding that to a list storing all the addded places of interest. 
 
 - As of Milestone 2, searching for a place of interest is implemented by storing the user's search text and passing it through a Geocoder object, which obtains a list of possible addresses. 
+
+<details><summary>Obtaining search results</summary>
+<p>
+        
 ```java
 EditText locationSearch = findViewById(R.id.editText);
         String location = locationSearch.getText().toString();
@@ -52,7 +56,9 @@ EditText locationSearch = findViewById(R.id.editText);
                 e.printStackTrace();
             }
 ```
-- The most relevant address is  then added to an ArrayList: ```     list.add(address.getAddressLine(0))``` 
+</p>
+</details>
+- The most relevant address is  then added to an ArrayList: ```list.add(address.getAddressLine(0))``` 
 
 - **Issue faced #1**: Despite having the null check in ```if (location != null || !location.equals(""))```, the app crashes when the search bar is empty, and the "ADD" button is clicked. While this issue is does not hinder the functionality of the app, it can cause some unintended crashes when the "ADD" button is accidentally pressed. Low priority. 
 
@@ -64,7 +70,6 @@ Intent intent = new Intent(this, ListView.class);
 intent.putExtra("name", list);
 startActivity(intent);
 ``` 
-- The current understanding is that any list ADTs passed using ```intent.putExtra("name", list)``` would automatically be converted into an ArrayList, and that there is no such method to pass a hashset. However, at our current implementation using an ArrayList, it is still possible for us to remove, albeit being slightly inefficient. 
 
 **_As a user, I want to be able to view a list of the places I have added so that I can review them._**
 
@@ -84,9 +89,7 @@ startActivity(intent);
 
 
 ## Software Engineering Principles Employed
-<details>
-        <summary>S.O.L.I.D.</summary>
-        <br>
+##### **S.O.L.I.D.**
 - Single Responsiblity Principle
 Every class is assigned only a single functionality. ```MapActivity``` is responsible for loading the map which allows users to add places of interest; ```ListView``` is responsible for displaying the current list of places of interest to the users; ```RouteView``` is responsible for displaying a generated route for the users' itinerary. 
 - Open/ Closed Principle
@@ -97,21 +100,16 @@ This principle is not employed as our Android app is not complicated and at most
 No interface implemented.
 - Dependency Inversion Principle
 No interface implemented, although its importance is appreciated and will be taken note of once we are more advanced in the development of the app. 
-        </details>
 
-<details>
-        <summary>D.R.Y. (Don't Repeat Yourself)</summary>
-        <br>
+##### **D.R.Y. (Don't Repeat Yourself)**
+
 There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, whcih we plan to streamline. We need to figure out a better way of passing data from one Java file to another, or to store it in a database using mySQL which would require extra time to learn. 
-        </details>
 
 
-<details>
-        <summary>K.I.S.S. (Keep It Simple, Stupid
-        0</summary>
-        <br>
+
+##### **K.I.S.S. (Keep It Simple, Stupid)**
+
 Our code is coded such that it is simple to read without in-depth knowledge of the context, moreover, comments are inserted to clarify on methods that may be unclear. 
-        </details>
 
 
 ## Development Plan towards Milestone 3

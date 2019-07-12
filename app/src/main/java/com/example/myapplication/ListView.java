@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class ListView extends AppCompatActivity {
 
     // TODO: find a way to remove this, since the exact code is repeated in MapsActivity
     private void showListOfLocation(ArrayList<String> list) {
-        TextView text = findViewById(R.id.textView2);
+        TextView text = findViewById(R.id.text_list);
         List<Address> addressList = null;
         String[] to_print = new String[list.size()];
         StringBuilder final_text = new StringBuilder();
@@ -62,10 +63,18 @@ public class ListView extends AppCompatActivity {
         text.setText(final_text.toString());
     }
 
-    // opens another activity
+    // opens another activity and passes the ArrayList of locations
+    // as well as the number of days and hours for their trip
     public void onGenerate(View view) {
+        EditText text_days = findViewById(R.id.text_days);
+        int num_days  = Integer.parseInt(text_days.getText().toString());
+        EditText text_hours = findViewById(R.id.text_hours);
+        int num_hours  = Integer.parseInt(text_hours.getText().toString());
+
         Intent intent = new Intent(this, RouteView.class);
         intent.putExtra("name", list);
+        intent.putExtra("days", num_days);
+        intent.putExtra("hours", num_hours);
         startActivity(intent);
     }
 }

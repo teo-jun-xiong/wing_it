@@ -19,24 +19,28 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     // this class should show the order for users to proceed their days in
 
-    String str_from, str_to;
-    TextView textView;
-    int[][] adj_mtx;
+    String str_from, str_to; // to store origin and destination
+    TextView text_results; // the TextView to display the results
+    int[][] adj_mtx; // adjacency matrix to store distance between locations
     int duration_btn_points;
-    Queue<Row_Col_Pair> q = new LinkedList<>();
+    Queue<Row_Col_Pair> q = new LinkedList<>(); // Queue to facilitate storing in array
+
     ArrayList<String> incoming_List;
+    int incoming_days, incoming_hours;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routeview);
 
-        textView = findViewById(R.id.SSSPtext);
+        text_results = findViewById(R.id.SSSPtext);
 
         Intent incomingIntent = getIntent();
         incoming_List = incomingIntent.getStringArrayListExtra("name");
+        incoming_days = incomingIntent.getIntExtra("days", 0);
+        incoming_hours = incomingIntent.getIntExtra("hours", 0);
+
         processData();
-        // executeSSSP(incoming_List);
     }
 
     // this function currently takes the first 2 input locations and adds them to the URL,
@@ -49,7 +53,8 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
         // store data in adj_mtx
         for (int i = 0; i < incoming_List.size() - 1; i++)
             for (int j = i + 1; i != j && j < incoming_List.size(); j++) {
-                q.add(new Row_Col_Pair(i, j)); System.out.println(i + " " + j + q.peek().get_row() + " " + q.peek().get_col());
+                q.add(new Row_Col_Pair(i, j));
+                System.out.println(i + " " + j + q.peek().get_row() + " " + q.peek().get_col());
                 str_from = incoming_List.get(i);
                 str_to = incoming_List.get(j);
                 String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
@@ -57,8 +62,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
             }
     }
 
-
-
+    // this is only called by the Geo interface in GeoTask class
     // this function shows the distance between 2 locations, temporary function to test
     @SuppressLint("SetTextI18n")
     @Override
@@ -73,18 +77,37 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
             adj_mtx[temp_r][temp_c] = duration_btn_points;
             adj_mtx[temp_c][temp_r] = duration_btn_points;
         }
-        if (q.isEmpty()){
-            executeSSSP();
+
+        // executes SSSP when the data is processed
+        if (q.isEmpty()) {
+            SSSP_Solver sssp_solver = new SSSP_Solver(adj_mtx);
         }
     }
+
+
+    boolean[] visited;
 
     // temporarily store a series of numbers which indicates the index in incoming_List
     // then print out the order to visit the places by calling printMatrix()
     // source will be the first location, i.e. hotel
     private void executeSSSP() {
 
+        double[] duration = new double[incoming_List.size()];
+        visited = new boolean[incoming_List.size()];
+        LinkedList<Integer> order = new LinkedList<>();
 
-        printItinerary();
+        for (int i = 1; i < duration.length; i++) {
+            duration[i] = Math.pow(10, 9);
+        }
+
+        visited[0] = true;
+        order.add(0);
+
+        for (int j=1; j < incoming_List.size(); j++){
+            for (int k = 0; k < incoming_List.size(); k++){
+
+            }
+        }
     }
 
     private void printItinerary() {

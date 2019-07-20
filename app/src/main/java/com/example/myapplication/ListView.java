@@ -17,6 +17,11 @@ import java.util.List;
 /*
 This class simply returns a view of the current list of locations the user has input.
 It contains 1 button, generate, which will generate the itinerary after crunching the numbers.
+
+There should also be input fields (RecyclerView?) to allow users to input the duration they wish
+to stay at each location. Could store an int[], and extract it during the computation of the
+algorithm.
+
 It only shows the address now we are unable to show the landmark name, i.e. the address of
 Bedok Mall is shown rather than "Bedok Mall" itself.
  */

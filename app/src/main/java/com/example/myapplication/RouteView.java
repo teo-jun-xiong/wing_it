@@ -9,10 +9,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /*
-This class shows the user the calculated itinerary and returns a view back.
+Shows the user the order which they should visit the input locations
+Should make use of Travelling Salesperson algorithm, input locations, input days, and hours,
+to calculate the shortest path. (minimum cost Hamiltonian path.
+
+The user will then be shown (fragment) the itinerary.
+Ideally, it should take into account the number of hours they wish to spend per day and
+reset the calculation once that is met.
  */
 
 public class RouteView extends AppCompatActivity implements GeoTask.Geo {
@@ -21,12 +28,14 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     String str_from, str_to; // to store origin and destination
     TextView text_results; // the TextView to display the results
-    int[][] adj_mtx; // adjacency matrix to store distance between locations
-    int duration_btn_points;
-    Queue<Row_Col_Pair> q = new LinkedList<>(); // Queue to facilitate storing in array
+    double[][] adj_mtx; // adjacency matrix to store distance between locations
+    double duration_btn_points;
+    Queue<Helper_Queue_Pair> q = new LinkedList<>(); // Queue to facilitate storing in array
 
     ArrayList<String> incoming_List;
     int incoming_days, incoming_hours;
+    List<Integer> tour;
+    double tourCost;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,12 +57,12 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     // TODO: include the entire list and obtain the SSSP algo
     private void processData() {
 
-        adj_mtx = new int[incoming_List.size()][incoming_List.size()];
+        adj_mtx = new double[incoming_List.size()][incoming_List.size()];
 
         // store data in adj_mtx
         for (int i = 0; i < incoming_List.size() - 1; i++)
             for (int j = i + 1; i != j && j < incoming_List.size(); j++) {
-                q.add(new Row_Col_Pair(i, j));
+                q.add(new Helper_Queue_Pair(i, j));
                 System.out.println(i + " " + j + q.peek().get_row() + " " + q.peek().get_col());
                 str_from = incoming_List.get(i);
                 str_to = incoming_List.get(j);
@@ -64,49 +73,33 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     // this is only called by the Geo interface in GeoTask class
     // this function shows the distance between 2 locations, temporary function to test
+    // assumption is that going from A to B is the same cost as going from B to A
     @SuppressLint("SetTextI18n")
     @Override
     public void store_in_adj_mtx(String result) {
         String[] res = result.split(",");
-        duration_btn_points = (int) Double.parseDouble(res[0]) / 60;
+        duration_btn_points = Double.parseDouble(res[0]) / 60;
 
         if (q.size() != 0) {
-            Row_Col_Pair temp_pair = q.poll();
+            Helper_Queue_Pair temp_pair = q.poll();
             int temp_r = temp_pair.get_row();
             int temp_c = temp_pair.get_col();
             adj_mtx[temp_r][temp_c] = duration_btn_points;
             adj_mtx[temp_c][temp_r] = duration_btn_points;
         }
 
-        // executes SSSP when the data is processed
+        // executes TSP when the data is processed
         if (q.isEmpty()) {
-            SSSP_Solver sssp_solver = new SSSP_Solver(adj_mtx);
-        }
-    }
-
-
-    boolean[] visited;
-
-    // temporarily store a series of numbers which indicates the index in incoming_List
-    // then print out the order to visit the places by calling printMatrix()
-    // source will be the first location, i.e. hotel
-    private void executeSSSP() {
-
-        double[] duration = new double[incoming_List.size()];
-        visited = new boolean[incoming_List.size()];
-        LinkedList<Integer> order = new LinkedList<>();
-
-        for (int i = 1; i < duration.length; i++) {
-            duration[i] = Math.pow(10, 9);
-        }
-
-        visited[0] = true;
-        order.add(0);
-
-        for (int j=1; j < incoming_List.size(); j++){
-            for (int k = 0; k < incoming_List.size(); k++){
-
-            }
+            TspDynamicProgrammingIterative solver = new TspDynamicProgrammingIterative(adj_mtx);
+            tour = solver.getTour();
+            tourCost = solver.getTourCost();
+            TextView textView = findViewById(R.id.SSSPtext);
+            StringBuilder temp = new StringBuilder();
+            temp.append("Tour:");
+            temp.append(tour);
+            temp.append("\n");
+            temp.append(tourCost);
+            textView.setText(temp);
         }
     }
 

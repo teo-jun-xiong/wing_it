@@ -27,8 +27,12 @@ import java.util.List;
 import java.util.Map;
 
 /*
-This class is temporarily the first interface the user sees when the app is opened.
-It consists of 4 components, the map view, search function, add function, list function.
+Sets the first interface of the app to be activity_map
+Allows user to search for and add a location to their list
+When the user is done adding locations, they can press the list button to
+view a list of their locations
+
+The user is then directed to view activity_list
  */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 

@@ -6,6 +6,8 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +29,11 @@ Bedok Mall is shown rather than "Bedok Mall" itself.
  */
 public class ListView extends AppCompatActivity {
 
-    private ArrayList<String> list = null;
+    private RecyclerView mRecyclerView;
+    private RecyclerViewAdapter mAdapter;
+    ArrayList<RecyclerItem> recyclerItemArrayList;
+    private RecyclerView.LayoutManager mLayoutManager;
+    ArrayList<String> list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,48 +42,50 @@ public class ListView extends AppCompatActivity {
 
         Intent incomingIntent = getIntent();
         list = incomingIntent.getStringArrayListExtra("name");
-        showListOfLocation(list);
+        initRecyclerView(list);
+    }
+
+    public void removeItem(int position) {
+        recyclerItemArrayList.remove(position);
+        mAdapter.notifyItemRemoved(position);
     }
 
     // TODO: find a way to remove this, since the exact code is repeated in MapsActivity
-    private void showListOfLocation(ArrayList<String> list) {
-        TextView text = findViewById(R.id.text_list);
-        List<Address> addressList = null;
-        String[] to_print = new String[list.size()];
-        StringBuilder final_text = new StringBuilder();
-        for (int i = 0; i < list.size(); i++) {
-            String temp = list.get(i);
-            if (temp != null || !temp.equals("")) {
-                Geocoder geocoder = new Geocoder(this);
-                try {
-                    addressList = geocoder.getFromLocationName(temp, 1);
+    private void initRecyclerView(ArrayList<String> list) {
+        recyclerItemArrayList = new ArrayList<>();
+        int len = list.size();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        for (int i = 0; i < len; i++) {
+            recyclerItemArrayList.add(new RecyclerItem(list.get(i), list.get(i)));
+        }
+
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new RecyclerViewAdapter(recyclerItemArrayList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+
+            @Override
+            public void onDeleteClick(int position) {
+                removeItem(position);
             }
-
-            // TODO: change this line of code to show the name of the location rather than street address
-            to_print[i] = "- " + addressList.get(0).getAddressLine(0) + "\n";
-        }
-
-        for (int j = 0; j < list.size(); j++) {
-
-            final_text.append(to_print[j]);
-        }
-        text.setText(final_text.toString());
+        });
     }
 
     // opens another activity and passes the ArrayList of locations
     // as well as the number of days and hours for their trip
     public void onGenerate(View view) {
         EditText text_days = findViewById(R.id.text_days);
-        int num_days  = Integer.parseInt(text_days.getText().toString());
+        int num_days = Integer.parseInt(text_days.getText().toString());
         EditText text_hours = findViewById(R.id.text_hours);
-        int num_hours  = Integer.parseInt(text_hours.getText().toString());
+        int num_hours = Integer.parseInt(text_hours.getText().toString());
 
         Intent intent = new Intent(this, RouteView.class);
-        intent.putExtra("name", list);
+        intent.putExtra("array", list);
         intent.putExtra("days", num_days);
         intent.putExtra("hours", num_hours);
         startActivity(intent);

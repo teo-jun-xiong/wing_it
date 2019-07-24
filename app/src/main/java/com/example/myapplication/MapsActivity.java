@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -85,8 +86,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String location = locationSearch.getText().toString();
         List<Address> addressList = null;
 
-        // TODO: if statement does not work, not typing anything into the search field crashes the app
-        if (location != null || !location.equals("")) {
+        if (location.equals("")) {
+            Toast.makeText(getApplicationContext(), "Please input a valid query!", Toast.LENGTH_SHORT).show();
+
+        } else {
             Geocoder geocoder = new Geocoder(this);
             try {
                 addressList = geocoder.getFromLocationName(location, 1);
@@ -111,10 +114,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     // opens another activity which shows the list of locations
     public void onMapList(View view) {
-        Intent intent = new Intent(this, ListView.class);
 
-        // passes the list of locations the user added
-        intent.putExtra("name", list);
-        startActivity(intent);
+        if (list.size() < 3) {
+            Toast.makeText(getApplicationContext(), "Please add at least 3 locations!", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(this, ListView.class);
+
+            // passes the list of locations the user added
+            intent.putExtra("name", list);
+            startActivity(intent);
+        }
     }
 }

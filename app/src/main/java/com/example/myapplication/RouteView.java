@@ -24,28 +24,24 @@ reset the calculation once that is met.
 
 public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
-    // this class should show the order for users to proceed their days in
-
-    String str_from, str_to; // to store origin and destination
-    TextView text_results; // the TextView to display the results
-    double[][] adj_mtx; // adjacency matrix to store distance between locations
+    double tourCost;
+    TextView textView;
+    List<Integer> tour;
+    double[][] adj_mtx;
+    String str_from, str_to;
     double duration_btn_points;
-    Queue<Helper_Queue_Pair> q = new LinkedList<>(); // Queue to facilitate storing in array
-
     ArrayList<String> incoming_List;
     int incoming_days, incoming_hours;
-    List<Integer> tour;
-    double tourCost;
+    Queue<Helper_Queue_Pair> q = new LinkedList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routeview);
-
-        text_results = findViewById(R.id.SSSPtext);
+        textView = findViewById(R.id.SSSPtext);
 
         Intent incomingIntent = getIntent();
-        incoming_List = incomingIntent.getStringArrayListExtra("name");
+        incoming_List = incomingIntent.getStringArrayListExtra("array");
         incoming_days = incomingIntent.getIntExtra("days", 0);
         incoming_hours = incomingIntent.getIntExtra("hours", 0);
 
@@ -54,9 +50,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
     // this function currently takes the first 2 input locations and adds them to the URL,
     // which is then executed by initialising a new Geotask object with the URL as the parameter
-    // TODO: include the entire list and obtain the SSSP algo
     private void processData() {
-
         adj_mtx = new double[incoming_List.size()][incoming_List.size()];
 
         // store data in adj_mtx
@@ -66,7 +60,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
                 System.out.println(i + " " + j + q.peek().get_row() + " " + q.peek().get_col());
                 str_from = incoming_List.get(i);
                 str_to = incoming_List.get(j);
-                String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
+                String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to +  "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
                 new GeoTask(RouteView.this).execute(url);
             }
     }
@@ -93,28 +87,11 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
             TspDynamicProgrammingIterative solver = new TspDynamicProgrammingIterative(adj_mtx);
             tour = solver.getTour();
             tourCost = solver.getTourCost();
-            TextView textView = findViewById(R.id.SSSPtext);
             StringBuilder temp = new StringBuilder();
             temp.append("Tour:");
             temp.append(tour);
-            temp.append("\n");
-            temp.append(tourCost);
+
             textView.setText(temp);
         }
-    }
-
-    private void printItinerary() {
-        TextView textView = findViewById(R.id.SSSPtext);
-        StringBuilder toShow = new StringBuilder();
-
-        for (int a = 0; a < adj_mtx.length; a++) {
-            for (int b = 0; b < adj_mtx.length; b++) {
-                toShow.append(adj_mtx[a][b]).append(" ");
-                System.out.print(adj_mtx[a][b] + " ");
-            }
-            toShow.append("\n");
-            System.out.println();
-        }
-        textView.setText(toShow);
     }
 }

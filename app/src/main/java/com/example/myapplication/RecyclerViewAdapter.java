@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,17 +22,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public interface OnItemClickListener {
         void onDeleteClick(int position);
+        void onDoneClick(int position);
     }
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView1, mTextView2;
+        public EditText mHours;
         public ImageView mDeleteImage;
+        public ImageView mDoneImage;
 
         public RecyclerViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             mTextView1 = itemView.findViewById(R.id.recycler_textView);
             mTextView2 = itemView.findViewById(R.id.recycler_textView2);
+            mHours = itemView.findViewById(R.id.recycler_hours);
             mDeleteImage = itemView.findViewById(R.id.recycler_delete);
+            mDoneImage = itemView.findViewById(R.id.recycler_done);
 
             mDeleteImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -40,6 +46,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         int position = getAdapterPosition();
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
+
+            mDoneImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDoneClick(position);
                         }
                     }
                 }
@@ -63,6 +81,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RecyclerItem currentItem = mRecyclerList.get(i);
         recyclerViewHolder.mTextView1.setText(currentItem.getText1());
         recyclerViewHolder.mTextView2.setText(currentItem.getText2());
+        if (currentItem.getTextHours() != 0){
+            recyclerViewHolder.mHours.setText(currentItem.getTextHours());
+        }
     }
 
     @Override

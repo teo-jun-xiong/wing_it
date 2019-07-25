@@ -30,9 +30,10 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     double[][] adj_mtx;
     String str_from, str_to;
     double duration_btn_points;
-    ArrayList<String> incoming_List;
+    ArrayList<RecyclerItem> incoming_List;
     int incoming_days, incoming_hours;
     Queue<Helper_Queue_Pair> q = new LinkedList<>();
+    int[] incoming_Hours_Array;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,10 +42,10 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
         textView = findViewById(R.id.SSSPtext);
 
         Intent incomingIntent = getIntent();
-        incoming_List = incomingIntent.getStringArrayListExtra("array");
+        incoming_List = incomingIntent.getParcelableArrayListExtra("array");
         incoming_days = incomingIntent.getIntExtra("days", 0);
         incoming_hours = incomingIntent.getIntExtra("hours", 0);
-
+        incoming_Hours_Array = incomingIntent.getIntArrayExtra("hours_array");
         processData();
     }
 
@@ -58,8 +59,8 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
             for (int j = i + 1; i != j && j < incoming_List.size(); j++) {
                 q.add(new Helper_Queue_Pair(i, j));
                 System.out.println(i + " " + j + q.peek().get_row() + " " + q.peek().get_col());
-                str_from = incoming_List.get(i);
-                str_to = incoming_List.get(j);
+                str_from = incoming_List.get(i).getText1();
+                str_to = incoming_List.get(j).getText1();
                 String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to +  "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
                 new GeoTask(RouteView.this).execute(url);
             }

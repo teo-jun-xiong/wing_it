@@ -18,14 +18,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/*The instance of this class is called by "MainActivty",to get the time taken reach the destination from Google Distance Matrix API in background.
-  This class contains interface "Geo" to call the function store_in_adj_mtx(String) defined in "MainActivity.class" to display the result.
-  */
 public class GeoTask extends AsyncTask<String, Void, String> {
     private ProgressDialog pd;
     @SuppressLint("StaticFieldLeak")
     private Context mContext;
-    // Double duration;
     private Geo geo1;
 
     //constructor is used to get the context.

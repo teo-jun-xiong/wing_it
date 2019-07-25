@@ -78,10 +78,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    // when ADD button is clicked
     public void onMapAdd(View view) {
-
-        // stores the user's search text as a string
         EditText locationSearch = findViewById(R.id.editText);
         String location = locationSearch.getText().toString();
         List<Address> addressList = null;
@@ -112,9 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    // opens another activity which shows the list of locations
     public void onMapList(View view) {
-
         if (list.size() < 3) {
             Toast.makeText(getApplicationContext(), "Please add at least 3 locations!", Toast.LENGTH_SHORT).show();
         } else {

@@ -35,32 +35,39 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 ## User Stories and Core Features
 **_As a user, I want to be able the add places of interest so that I can visit them during my trip._**
 
-- **Core feature 1**: This feature comes in 2 parts: searching for a place of interest, and adding that to a list storing all the addded places of interest. 
+- **Core feature 1**: Adding places of interest. This feature comes in 2 parts: searching for a place of interest, and adding that to a list containing all the places of interest. 
 
-- As of Milestone 2, searching for a place of interest is implemented by storing the user's search text and passing it through a Geocoder object, which obtains a list of possible addresses. 
+- Searching for a place of interest is implemented by storing the user's search text and passing it through a Geocoder object, which obtains a list of possible addresses. 
 
-<details><summary>Obtaining search results</summary>
+<details><summary>Obtaining search results from user's input</summary>
 <p>
         
 ```java
 EditText locationSearch = findViewById(R.id.editText);
-        String location = locationSearch.getText().toString();
-        List<Address> addressList = null;
+String location = locationSearch.getText().toString(); // user's String input
+List<Address> addressList = null;
 
-        if (location != null || !location.equals("")) {
-            Geocoder geocoder = new Geocoder(this);
-            try {
+if (location.equals("")) {
+        Toast.makeText(getApplicationContext(), "Please input a valid query!", Toast.LENGTH_SHORT).show();
+
+} else {
+        Geocoder geocoder = new Geocoder(this);
+        try {
                 addressList = geocoder.getFromLocationName(location, 1);
 
-            } catch (IOException e) {
+        } catch (IOException e) {
                 e.printStackTrace();
-            }
+        }
+
 ```
 </p>
 </details>
-- The most relevant address is  then added to an ArrayList: ```list.add(address.getAddressLine(0))``` 
+- On pressing the "ADD" button, a marker is added to the Map and the most relevant address is then added to an ArrayList: ```list.add(address.getAddressLine(0))```. Once the user decides that enough places of interest have been added, they can view a list of places of interest by pressing the "LIST" button. A vertical scrolling card view is shown to the user, each with three components to it, the name of the place, its street address, a "delete" button (trash can), a "done" button (tick), and an input field for the number of hours they wish to spend at location. 
 
-- **Issue faced #1**: Despite having the null check in ```if (location != null || !location.equals(""))```, the app crashes when the search bar is empty, and the "ADD" button is clicked. While this issue is does not hinder the functionality of the app, it can cause some unintended crashes when the "ADD" button is accidentally pressed. Low priority. 
+- Users are able to remove any previously added places of interest by simply pressing the delete button. Following that, users are required to type in an integer representing the number of hours they wished to spend at the place of interest, and pressing the done button will save their input.  
+
+- Below the scrolling card view, there are 2 input fields for the number of days the trip will be, and the number of hours they wished to spend per day. These two inputs serve as a guideline in generating the most optimal route. Once the above is done, pressing the "generate" button will then compute the most optimal route.
+
 
 **_As a user, I want to be able to delete places of interest that I no longer wish to visit._**
 
@@ -83,6 +90,10 @@ startActivity(intent);
 
 **_As a user, I want to include the time I wish to spend at each place of interest so that I can maximise my time overseas._**
 
+## Issues Faced
+| Summary of Issue | Details of Issue |
+|---|---|
+| ~~Null inputs for the "add" button causes app to crash~~ | Despite having the null check in ```if (location != null or !location.equals(""))```, the app crashes when the search bar is empty, after the "ADD" button is clicked. Solved by implementing a Toast to prompt users to include a valid query: ```Toast.makeText(getApplicationContext(), "Please input a valid query!", Toast.LENGTH_SHORT).show();``` |
 
 ## Program Flowchart
 ![Image of flowchart](https://i.imgur.com/dZyoRoC.png) 

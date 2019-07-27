@@ -103,9 +103,6 @@ if (location.equals("")) {
 | ~~Multiple threads made adding to a list difficult~~ | When we intended to increase the scale of obtaining the result from the Google Maps API using a URL request, we encountered an issue where the GeoTask's ```execute()``` occurs in the background and not concurrently after it was called in ```RouteView```. Found out that this was a result of ```AsyncTask``` utilising threads. Previously, we used if-else to circumvent this, which proved to be too complex and confusing. Switched to a ```Queue``` to store the row and column pair, and when the background task is complete, it would pop the top of the queue. We found this to be a much simpler way to store the data in the adjacency matrix. | 
 
 
-
-
-
 ## Program Flowchart
 ![Image of flowchart](https://i.imgur.com/dZyoRoC.png) 
 
@@ -136,17 +133,15 @@ No interface implemented, although its importance is appreciated and will be tak
 
 There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, whcih we plan to streamline. We need to figure out a better way of passing data from one Java file to another, or to store it in a database using mySQL which would require extra time to learn. 
 
-
-
 ##### **K.I.S.S. (Keep It Simple, Stupid)**
 
 Our code is coded such that it is simple to read without in-depth knowledge of the context, moreover, comments are inserted to clarify on methods that may be unclear. 
 
 
 ## Development Plan towards Milestone 3
-- [ ] Implement **delete** functionality
+- [x] Implement **delete** functionality
 - [ ] Implement **daily itinerary**
-- [ ] Devise SSSP algorithm
+- [x] Devise ~~SSSP~~ TSP algorithm
 - [x] Implement time as a factor rather than distance for SSSP 
 - [ ] \(Optional) UI/ user-friendlyness improvement
 - [ ] Debugging

@@ -9,7 +9,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:id="@+id/recycler_delete"
@@ -46,9 +47,12 @@
             android:id="@+id/recycler_hours"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:layout_toStartOf="@+id/recycler_done"
             android:ems="10"
+            android:textColorHint="#b5b5b5"
+            android:gravity="center"
+            android:textAlignment="center"
             android:fontFamily="@font/montserrat"
             android:hint="Input hours"
             android:inputType="number" />

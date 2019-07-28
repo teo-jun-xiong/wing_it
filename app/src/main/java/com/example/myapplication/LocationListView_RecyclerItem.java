@@ -3,35 +3,35 @@ package com.example.myapplication;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ItineraryViewRecyclerItem implements Parcelable {
-    private String day_number, mText2;
+public class LocationListView_RecyclerItem implements Parcelable {
+    private String mText1, mText2;
     private int mTextHours = 0;
 
-    public ItineraryViewRecyclerItem(String text1, String text2){
-        day_number = text1;
+    public LocationListView_RecyclerItem(String text1, String text2){
+        mText1 = text1;
         mText2 = text2;
     }
 
-    protected ItineraryViewRecyclerItem(Parcel in) {
-        day_number = in.readString();
+    protected LocationListView_RecyclerItem(Parcel in) {
+        mText1 = in.readString();
         mText2 = in.readString();
         mTextHours = in.readInt();
     }
 
-    public static final Creator<ItineraryViewRecyclerItem> CREATOR = new Creator<ItineraryViewRecyclerItem>() {
+    public static final Creator<LocationListView_RecyclerItem> CREATOR = new Creator<LocationListView_RecyclerItem>() {
         @Override
-        public ItineraryViewRecyclerItem createFromParcel(Parcel in) {
-            return new ItineraryViewRecyclerItem(in);
+        public LocationListView_RecyclerItem createFromParcel(Parcel in) {
+            return new LocationListView_RecyclerItem(in);
         }
 
         @Override
-        public ItineraryViewRecyclerItem[] newArray(int size) {
-            return new ItineraryViewRecyclerItem[size];
+        public LocationListView_RecyclerItem[] newArray(int size) {
+            return new LocationListView_RecyclerItem[size];
         }
     };
 
     public String getText1() {
-        return day_number;
+        return mText1;
     }
 
     public String getText2() {
@@ -47,7 +47,7 @@ public class ItineraryViewRecyclerItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(day_number);
+        dest.writeString(mText1);
         dest.writeString(mText2);
         dest.writeInt(mTextHours);
     }

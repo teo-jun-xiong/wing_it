@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ItineraryViewTspAlgorithm {
+public class ItineraryView_TSP {
 
     private int N, start;
     private double[][] distance;
@@ -20,7 +20,7 @@ public class ItineraryViewTspAlgorithm {
     private double minTourCost = Double.POSITIVE_INFINITY;
     private boolean ranSolver = false;
 
-    public ItineraryViewTspAlgorithm(double[][] arr) {
+    public ItineraryView_TSP(double[][] arr) {
         distance = arr;
         N = distance.length;
         start = 0;
@@ -169,8 +169,8 @@ public class ItineraryViewTspAlgorithm {
         distanceMatrix[0][3] = 8;
 
         int startNode = 0;
-        ItineraryViewTspAlgorithm solver =
-                new ItineraryViewTspAlgorithm(startNode, distanceMatrix);
+        ItineraryView_TSP solver =
+                new ItineraryView_TSP(startNode, distanceMatrix);
 
         // Prints: [0, 3, 2, 4, 1, 5, 0]
         System.out.println("Tour: " + solver.getTour());

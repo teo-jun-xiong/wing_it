@@ -11,8 +11,8 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_wing_it"
-        android:label="Wing It!"
-        android:roundIcon="@mipmap/ic_wing_it_round"
+        android:label="wing it!"
+        android:roundIcon="@mipmap/ic_wing_it"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!--
@@ -31,14 +31,14 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
+            android:name=".MainActivity"
+            android:label="wing it!">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListView" />
+        <activity android:name=".LocationListView" />
         <activity android:name=".ItineraryView" />
     </application>
 

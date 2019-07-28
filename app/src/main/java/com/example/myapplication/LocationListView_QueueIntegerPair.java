@@ -1,10 +1,10 @@
 package com.example.myapplication;
 
-class QueueIntegerPair {
+class LocationListView_QueueIntegerPair {
 
     private int r, c;
 
-    QueueIntegerPair(int a, int b) {
+    LocationListView_QueueIntegerPair(int a, int b) {
         r = a;
         c = b;
     }

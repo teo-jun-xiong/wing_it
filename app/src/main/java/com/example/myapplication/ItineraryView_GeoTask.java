@@ -18,14 +18,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class GeoTask extends AsyncTask<String, Void, String> {
+public class ItineraryView_GeoTask extends AsyncTask<String, Void, String> {
     private ProgressDialog pd;
     @SuppressLint("StaticFieldLeak")
     private Context mContext;
     private Geo geo1;
 
     //constructor is used to get the context.
-    GeoTask(Context mContext) {
+    ItineraryView_GeoTask(Context mContext) {
         this.mContext = mContext;
         geo1 = (Geo) mContext;
     }

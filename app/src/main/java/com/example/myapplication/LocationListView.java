@@ -24,18 +24,18 @@ algorithm.
 It only shows the address now we are unable to show the landmark name, i.e. the address of
 Bedok Mall is shown rather than "Bedok Mall" itself.
  */
-public class ListView extends AppCompatActivity {
+public class LocationListView extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private ListViewRecyclerAdapter mAdapter;
-    ArrayList<ListViewRecyclerItem> listViewItemArrayListRecycler;
+    private LocationListView_RecyclerAdapter mAdapter;
+    ArrayList<LocationListView_RecyclerItem> listViewItemArrayListRecycler;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<String> list;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listview);
+        setContentView(R.layout.activity_locationlistview);
 
         Intent incomingIntent = getIntent();
         list = incomingIntent.getStringArrayListExtra("name");
@@ -47,18 +47,18 @@ public class ListView extends AppCompatActivity {
         int len = list.size();
 
         for (int i = 0; i < len; i++) {
-            listViewItemArrayListRecycler.add(new ListViewRecyclerItem(list.get(i), list.get(i)));
+            listViewItemArrayListRecycler.add(new LocationListView_RecyclerItem(list.get(i), list.get(i)));
         }
 
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.ListRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ListViewRecyclerAdapter(listViewItemArrayListRecycler);
+        mAdapter = new LocationListView_RecyclerAdapter(listViewItemArrayListRecycler);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mAdapter.setOnItemClickListener(new ListViewRecyclerAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new LocationListView_RecyclerAdapter.OnItemClickListener() {
 
             @Override
             public void onDeleteClick(int position) {

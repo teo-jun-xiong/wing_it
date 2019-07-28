@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ItineraryViewRecyclerAdapter extends RecyclerView.Adapter<ItineraryViewRecyclerAdapter.RecyclerViewHolder> {
-    private ArrayList<ListViewRecyclerItem> mRecyclerList;
+public class LocationListView_RecyclerAdapter extends RecyclerView.Adapter<LocationListView_RecyclerAdapter.RecyclerViewHolder> {
+    private ArrayList<LocationListView_RecyclerItem> mRecyclerList;
     private OnItemClickListener mListener;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -64,20 +64,20 @@ public class ItineraryViewRecyclerAdapter extends RecyclerView.Adapter<Itinerary
         }
     }
 
-    public ItineraryViewRecyclerAdapter(ArrayList<ListViewRecyclerItem> recyclerList){
+    public LocationListView_RecyclerAdapter(ArrayList<LocationListView_RecyclerItem> recyclerList){
         mRecyclerList = recyclerList;
     }
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.listview_recycler_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locationlistview_recycler_item, parent, false);
         RecyclerViewHolder rvh = new RecyclerViewHolder(v, mListener);
         return rvh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int i) {
-        ListViewRecyclerItem currentItem = mRecyclerList.get(i);
+        LocationListView_RecyclerItem currentItem = mRecyclerList.get(i);
         recyclerViewHolder.mTextView1.setText(currentItem.getText1());
         recyclerViewHolder.mTextView2.setText(currentItem.getText2());
         if (currentItem.getTextHours() != 0){

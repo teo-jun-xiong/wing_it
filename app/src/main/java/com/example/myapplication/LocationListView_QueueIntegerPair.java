@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+// Assists in storing row and column to input into the adjacency matrix
+
 class LocationListView_QueueIntegerPair {
 
     private int r, c;

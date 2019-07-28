@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/*
+RecyclerViewAdapter for ItineraryView_RecyclerItem.
+ */
+
 public class ItineraryView_RecyclerAdapter extends RecyclerView.Adapter<ItineraryView_RecyclerAdapter.RecyclerViewHolder> {
     private ArrayList<ItineraryView_RecyclerItem> mRecyclerList;
 

@@ -42,7 +42,7 @@
         android:background="@drawable/button_add_list_shape"
         android:elevation="15dp"
         android:fontFamily="@font/montserrat"
-        android:onClick="onMapAdd"
+        android:onClick="onAdd"
         android:stateListAnimator="@null"
         android:text="Add"
         android:textColor="@color/colorAccent"
@@ -61,7 +61,7 @@
         android:background="@drawable/button_add_list_shape"
         android:elevation="15dp"
         android:fontFamily="@font/montserrat"
-        android:onClick="onMapList"
+        android:onClick="onList"
         android:stateListAnimator="@null"
         android:text="LIST"
 

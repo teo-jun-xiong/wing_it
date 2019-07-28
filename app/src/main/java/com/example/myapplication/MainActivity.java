@@ -36,7 +36,7 @@ import java.util.List;
     shows a RecyclerView locationList of the added locations
  */
 
-public class MainMainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
     private static final int LOCATION_REQUEST = 500;
@@ -57,7 +57,6 @@ public class MainMainActivity extends AppCompatActivity implements OnMapReadyCal
         map = googleMap;
         map.getUiSettings().setZoomControlsEnabled(true);
 
-        // Customise the styling of the base map using a JSON object defined in a raw resource file.
         map.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST);
@@ -78,7 +77,7 @@ public class MainMainActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
-    public void onMapAdd(View view) {
+    public void onAdd(View view) {
         EditText locationSearch = findViewById(R.id.editText);
         String location = locationSearch.getText().toString();
         List<Address> addressList = null;
@@ -98,8 +97,6 @@ public class MainMainActivity extends AppCompatActivity implements OnMapReadyCal
             Address address = addressList.get(0);
             LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-            //  storing the longitude and latitude of the searched location, a marker is added to the map,
-            // and centers the user's view onto the marker
             map.addMarker(new MarkerOptions().position(latLng).title(address.getAddressLine(0)));
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
 
@@ -109,7 +106,7 @@ public class MainMainActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
-    public void onMapList(View view) {
+    public void onList(View view) {
         if (locationList.size() < 3) {
             Toast.makeText(getApplicationContext(), "Please add at least 3 locations!", Toast.LENGTH_SHORT).show();
         } else {

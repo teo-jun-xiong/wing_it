@@ -40,7 +40,7 @@ public class ItineraryView_GeoTask extends AsyncTask<String, Void, String> {
         pd.show();
     }
 
-    //This function is executed after the execution of "doInBackground(String...params)" to dismiss the displayed progress dialog and call "store_in_adj_mtx(Double)" defined in "MainMainActivity.java"
+    //This function is executed after the execution of "doInBackground(String...params)" to dismiss the displayed progress dialog and call "store_in_adj_mtx(Double)" defined in "MainActivity.java"
     @Override
     protected void onPostExecute(String aDouble) {
         super.onPostExecute(aDouble);

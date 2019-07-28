@@ -15,13 +15,8 @@ import java.util.List;
 import java.util.Queue;
 
 /*
-Shows the user the order which they should visit the input locations
-Should make use of Travelling Salesperson algorithm, input locations, input days, and hours,
-to calculate the shortest path. (minimum cost Hamiltonian path.
-
-The user will then be shown (fragment) the itinerary.
-Ideally, it should take into account the number of hours they wish to spend per day and
-reset the calculation once that is met.
+1. CardView for number of days: daily itinerary showing the order of visiting locations
+2. Text: should there be insufficient time to visit all the locations, notify user
  */
 
 public class ItineraryView extends AppCompatActivity implements ItineraryView_GeoTask.Geo {

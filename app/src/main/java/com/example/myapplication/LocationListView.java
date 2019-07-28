@@ -14,23 +14,23 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /*
-This class simply returns a view of the current list of locations the user has input.
-It contains 1 button, generate, which will generate the itinerary after crunching the numbers.
-
-There should also be input fields (RecyclerView?) to allow users to input the duration they wish
-to stay at each location. Could store an int[], and extract it during the computation of the
-algorithm.
-
-It only shows the address now we are unable to show the landmark name, i.e. the address of
-Bedok Mall is shown rather than "Bedok Mall" itself.
+1. Input field for days: number of days during a trip
+2. Input field for hours: number of hours a user intend to spend per day
+3. Generate button: shows the generated itinerary if it is valid
+4. Card view of individual location
+    4.1. Delete button: remove selected location
+    4.2. Text: shows name of selected location
+    4.3. Input field for hours: input number of hours intended to be spent at the selected location
+    4.4. Done button: registers the input
  */
+
 public class LocationListView extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private LocationListView_RecyclerAdapter mAdapter;
-    ArrayList<LocationListView_RecyclerItem> listViewItemArrayListRecycler;
-    private RecyclerView.LayoutManager mLayoutManager;
-    ArrayList<String> list;
+    private RecyclerView recyclerView;
+    private LocationListView_RecyclerAdapter adapter;
+    ArrayList<LocationListView_RecyclerItem> recyclerArrayList;
+    private RecyclerView.LayoutManager layoutManager;
+    ArrayList<String> intentList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,27 +38,27 @@ public class LocationListView extends AppCompatActivity {
         setContentView(R.layout.activity_locationlistview);
 
         Intent incomingIntent = getIntent();
-        list = incomingIntent.getStringArrayListExtra("name");
-        initRecyclerView(list);
+        intentList = incomingIntent.getStringArrayListExtra("name");
+        initialiseLocationListView_RecyclerView(intentList);
     }
 
-    private void initRecyclerView(ArrayList<String> list) {
-        listViewItemArrayListRecycler = new ArrayList<>();
+    private void initialiseLocationListView_RecyclerView(ArrayList<String> list) {
+        recyclerArrayList = new ArrayList<>();
         int len = list.size();
 
         for (int i = 0; i < len; i++) {
-            listViewItemArrayListRecycler.add(new LocationListView_RecyclerItem(list.get(i), list.get(i)));
+            recyclerArrayList.add(new LocationListView_RecyclerItem(list.get(i), list.get(i)));
         }
 
-        mRecyclerView = findViewById(R.id.ListRecyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new LocationListView_RecyclerAdapter(listViewItemArrayListRecycler);
+        recyclerView = findViewById(R.id.ListRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        adapter = new LocationListView_RecyclerAdapter(recyclerArrayList);
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
-        mAdapter.setOnItemClickListener(new LocationListView_RecyclerAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new LocationListView_RecyclerAdapter.OnItemClickListener() {
 
             @Override
             public void onDeleteClick(int position) {
@@ -73,19 +73,19 @@ public class LocationListView extends AppCompatActivity {
     }
 
     public void removeItem(int position) {
-        listViewItemArrayListRecycler.remove(position);
-        mAdapter.notifyItemRemoved(position);
+        recyclerArrayList.remove(position);
+        adapter.notifyItemRemoved(position);
     }
 
     public void doneItem(int position) {
-        EditText recyclerHours = Objects.requireNonNull(mRecyclerView.findViewHolderForAdapterPosition(position)).itemView.findViewById(R.id.recycler_hours);
+        EditText recyclerHours = Objects.requireNonNull(recyclerView.findViewHolderForAdapterPosition(position)).itemView.findViewById(R.id.recycler_hours);
 
         if (recyclerHours.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(),"Please enter an integer!", Toast.LENGTH_SHORT).show();
 
         } else {
-            listViewItemArrayListRecycler.get(position).setTextHours(Integer.parseInt(recyclerHours.getText().toString()));
-            System.out.println(position+""+recyclerHours.getText().toString()+""+ listViewItemArrayListRecycler.get(position).getTextHours());
+            recyclerArrayList.get(position).setTextHours(Integer.parseInt(recyclerHours.getText().toString()));
+            System.out.println(position+""+recyclerHours.getText().toString()+""+ recyclerArrayList.get(position).getTextHours());
         }
     }
 
@@ -99,15 +99,15 @@ public class LocationListView extends AppCompatActivity {
         } else {
             int num_days = Integer.parseInt(text_days.getText().toString());
             int num_hours = Integer.parseInt(text_hours.getText().toString());
-            int[] arr_hours = new int[listViewItemArrayListRecycler.size()];
+            int[] arr_hours = new int[recyclerArrayList.size()];
 
             for (int i = 0; i < arr_hours.length; i++){
-                arr_hours[i] = listViewItemArrayListRecycler.get(i).getTextHours();
+                arr_hours[i] = recyclerArrayList.get(i).getTextHours();
             }
             System.out.println(arr_hours[0] + " " + arr_hours[1] + " " + arr_hours[2]);
 
             Intent intent = new Intent(this, ItineraryView.class);
-            intent.putExtra("array", listViewItemArrayListRecycler);
+            intent.putExtra("array", recyclerArrayList);
             intent.putExtra("days", num_days);
             intent.putExtra("hours", num_hours);
             intent.putExtra("hours_array", arr_hours);

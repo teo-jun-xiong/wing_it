@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/*
+RecyclerViewAdapter for LocationListView_RecyclerItem.
+ */
+
 public class LocationListView_RecyclerAdapter extends RecyclerView.Adapter<LocationListView_RecyclerAdapter.RecyclerViewHolder> {
     private ArrayList<LocationListView_RecyclerItem> mRecyclerList;
     private OnItemClickListener mListener;

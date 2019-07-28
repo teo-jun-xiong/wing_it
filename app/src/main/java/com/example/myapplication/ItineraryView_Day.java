@@ -1,7 +1,8 @@
 package com.example.myapplication;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+
+// Helper class to store a day's itinerary and to add to that itinerary
 
 class ItineraryView_Day {
     private ArrayList<Integer> itinerary = new ArrayList<>();

@@ -123,7 +123,7 @@ public class ItineraryView_TSP {
     }
 
     // This method generates all bit sets of size n where r bits
-    // are set to one. The result is returned as a list of integer masks.
+    // are set to one. The result is returned as a intentList of integer masks.
     public static List<Integer> combinations(int r, int n) {
         List<Integer> subsets = new ArrayList<>();
         combinations(0, 0, r, n, subsets);

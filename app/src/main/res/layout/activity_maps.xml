@@ -1,56 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00548181"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="415dp"
-        android:layout_height="683dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="138dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="#978A1DA3"
-        android:gravity="center"
-        android:hint="@string/enter_location"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/add_button"
-        app:layout_constraintHorizontal_bias="0.301"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_location_shape"
+        android:fontFamily="@font/montserrat"
+        android:hint="Enter location"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/add_button"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="32dp"
-        android:background="#40C9C8"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_add_list_shape"
+        android:fontFamily="@font/montserrat"
         android:onClick="onMapAdd"
-        android:shadowRadius="50"
-        android:text="@string/add"
-        app:layout_constraintEnd_toStartOf="@+id/list_view_button"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Add"
+        android:textColor="#050505"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <Button
         android:id="@+id/list_view_button"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        android:background="#40C9C8"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="130dp"
+        android:background="@drawable/button_add_list_shape"
+        android:fontFamily="@font/montserrat"
         android:onClick="onMapList"
-        android:text="@string/list"
+        android:text="LIST"
+        android:textColor="#050505"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
 </android.support.constraint.ConstraintLayout>

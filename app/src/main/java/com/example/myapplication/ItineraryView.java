@@ -22,7 +22,7 @@ Ideally, it should take into account the number of hours they wish to spend per 
 reset the calculation once that is met.
  */
 
-public class RouteView extends AppCompatActivity implements GeoTask.Geo {
+public class ItineraryView extends AppCompatActivity implements GeoTask.Geo {
 
     double tourCost;
     TextView textView;
@@ -30,9 +30,9 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
     double[][] adj_mtx;
     String str_from, str_to;
     double duration_btn_points;
-    ArrayList<RecyclerItem> incoming_List;
+    ArrayList<ListViewRecyclerItem> incoming_List;
     int incoming_days, incoming_hours;
-    Queue<Helper_Queue_Pair> q = new LinkedList<>();
+    Queue<QueueIntegerPair> q = new LinkedList<>();
     int[] incoming_Hours_Array;
 
     @Override
@@ -57,12 +57,12 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
         // store data in adj_mtx
         for (int i = 0; i < incoming_List.size() - 1; i++)
             for (int j = i + 1; i != j && j < incoming_List.size(); j++) {
-                q.add(new Helper_Queue_Pair(i, j));
+                q.add(new QueueIntegerPair(i, j));
                 System.out.println(i + " " + j + q.peek().get_row() + " " + q.peek().get_col());
                 str_from = incoming_List.get(i).getText1();
                 str_to = incoming_List.get(j).getText1();
                 String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to +  "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
-                new GeoTask(RouteView.this).execute(url);
+                new GeoTask(ItineraryView.this).execute(url);
             }
     }
 
@@ -76,7 +76,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
         duration_btn_points = Double.parseDouble(res[0]) / 60;
 
         if (q.size() != 0) {
-            Helper_Queue_Pair temp_pair = q.poll();
+            QueueIntegerPair temp_pair = q.poll();
             int temp_r = temp_pair.get_row();
             int temp_c = temp_pair.get_col();
             adj_mtx[temp_r][temp_c] = duration_btn_points;
@@ -85,7 +85,7 @@ public class RouteView extends AppCompatActivity implements GeoTask.Geo {
 
         // executes TSP when the data is processed
         if (q.isEmpty()) {
-            TspDynamicProgrammingIterative solver = new TspDynamicProgrammingIterative(adj_mtx);
+            ItineraryViewTspAlgorithm solver = new ItineraryViewTspAlgorithm(adj_mtx);
             tour = solver.getTour();
             tourCost = solver.getTourCost();
             StringBuilder temp = new StringBuilder();

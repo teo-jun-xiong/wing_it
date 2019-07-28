@@ -3,35 +3,35 @@ package com.example.myapplication;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class RecyclerItem implements Parcelable {
-    private String mText1, mText2;
+public class ItineraryViewRecyclerItem implements Parcelable {
+    private String day_number, mText2;
     private int mTextHours = 0;
 
-    public RecyclerItem(String text1, String text2){
-        mText1 = text1;
+    public ItineraryViewRecyclerItem(String text1, String text2){
+        day_number = text1;
         mText2 = text2;
     }
 
-    protected RecyclerItem(Parcel in) {
-        mText1 = in.readString();
+    protected ItineraryViewRecyclerItem(Parcel in) {
+        day_number = in.readString();
         mText2 = in.readString();
         mTextHours = in.readInt();
     }
 
-    public static final Creator<RecyclerItem> CREATOR = new Creator<RecyclerItem>() {
+    public static final Creator<ItineraryViewRecyclerItem> CREATOR = new Creator<ItineraryViewRecyclerItem>() {
         @Override
-        public RecyclerItem createFromParcel(Parcel in) {
-            return new RecyclerItem(in);
+        public ItineraryViewRecyclerItem createFromParcel(Parcel in) {
+            return new ItineraryViewRecyclerItem(in);
         }
 
         @Override
-        public RecyclerItem[] newArray(int size) {
-            return new RecyclerItem[size];
+        public ItineraryViewRecyclerItem[] newArray(int size) {
+            return new ItineraryViewRecyclerItem[size];
         }
     };
 
     public String getText1() {
-        return mText1;
+        return day_number;
     }
 
     public String getText2() {
@@ -47,7 +47,7 @@ public class RecyclerItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(mText1);
+        dest.writeString(day_number);
         dest.writeString(mText2);
         dest.writeInt(mTextHours);
     }

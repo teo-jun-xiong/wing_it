@@ -1,10 +1,10 @@
 package com.example.myapplication;
 
-class Helper_Queue_Pair {
+class QueueIntegerPair {
 
     private int r, c;
 
-    Helper_Queue_Pair(int a, int b) {
+    QueueIntegerPair(int a, int b) {
         r = a;
         c = b;
     }

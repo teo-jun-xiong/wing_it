@@ -1,8 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +8,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 /*
@@ -33,8 +27,8 @@ Bedok Mall is shown rather than "Bedok Mall" itself.
 public class ListView extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerViewAdapter mAdapter;
-    ArrayList<RecyclerItem> recyclerItemArrayList;
+    private ListViewRecyclerAdapter mAdapter;
+    ArrayList<ListViewRecyclerItem> listViewItemArrayListRecycler;
     private RecyclerView.LayoutManager mLayoutManager;
     ArrayList<String> list;
 
@@ -49,22 +43,22 @@ public class ListView extends AppCompatActivity {
     }
 
     private void initRecyclerView(ArrayList<String> list) {
-        recyclerItemArrayList = new ArrayList<>();
+        listViewItemArrayListRecycler = new ArrayList<>();
         int len = list.size();
 
         for (int i = 0; i < len; i++) {
-            recyclerItemArrayList.add(new RecyclerItem(list.get(i), list.get(i)));
+            listViewItemArrayListRecycler.add(new ListViewRecyclerItem(list.get(i), list.get(i)));
         }
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new RecyclerViewAdapter(recyclerItemArrayList);
+        mAdapter = new ListViewRecyclerAdapter(listViewItemArrayListRecycler);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        mAdapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new ListViewRecyclerAdapter.OnItemClickListener() {
 
             @Override
             public void onDeleteClick(int position) {
@@ -79,7 +73,7 @@ public class ListView extends AppCompatActivity {
     }
 
     public void removeItem(int position) {
-        recyclerItemArrayList.remove(position);
+        listViewItemArrayListRecycler.remove(position);
         mAdapter.notifyItemRemoved(position);
     }
 
@@ -90,8 +84,8 @@ public class ListView extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Please enter an integer!", Toast.LENGTH_SHORT).show();
 
         } else {
-            recyclerItemArrayList.get(position).setTextHours(Integer.parseInt(recyclerHours.getText().toString()));
-            System.out.println(position+""+recyclerHours.getText().toString()+""+recyclerItemArrayList.get(position).getTextHours());
+            listViewItemArrayListRecycler.get(position).setTextHours(Integer.parseInt(recyclerHours.getText().toString()));
+            System.out.println(position+""+recyclerHours.getText().toString()+""+ listViewItemArrayListRecycler.get(position).getTextHours());
         }
     }
 
@@ -105,15 +99,15 @@ public class ListView extends AppCompatActivity {
         } else {
             int num_days = Integer.parseInt(text_days.getText().toString());
             int num_hours = Integer.parseInt(text_hours.getText().toString());
-            int[] arr_hours = new int[recyclerItemArrayList.size()];
+            int[] arr_hours = new int[listViewItemArrayListRecycler.size()];
 
             for (int i = 0; i < arr_hours.length; i++){
-                arr_hours[i] = recyclerItemArrayList.get(i).getTextHours();
+                arr_hours[i] = listViewItemArrayListRecycler.get(i).getTextHours();
             }
             System.out.println(arr_hours[0] + " " + arr_hours[1] + " " + arr_hours[2]);
 
-            Intent intent = new Intent(this, RouteView.class);
-            intent.putExtra("array", recyclerItemArrayList);
+            Intent intent = new Intent(this, ItineraryView.class);
+            intent.putExtra("array", listViewItemArrayListRecycler);
             intent.putExtra("days", num_days);
             intent.putExtra("hours", num_hours);
             intent.putExtra("hours_array", arr_hours);

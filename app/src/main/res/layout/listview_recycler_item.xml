@@ -25,9 +25,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/recycler_delete"
+            android:fontFamily="@font/montserrat"
             android:text="Line 1"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -37,6 +38,7 @@
             android:layout_below="@+id/recycler_textView"
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/recycler_delete"
+            android:fontFamily="@font/montserrat"
             android:text="Line 2"
             android:textSize="15sp" />
 
@@ -44,8 +46,10 @@
             android:id="@+id/recycler_hours"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:textSize="16sp"
             android:layout_toStartOf="@+id/recycler_done"
             android:ems="10"
+            android:fontFamily="@font/montserrat"
             android:hint="Input hours"
             android:inputType="number" />
 

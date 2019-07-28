@@ -22,7 +22,8 @@ Github | 28 May | 2 | 2 | Attempted to figure out how to use Github as a platfor
 | Searching for TSP and implementing into app | 12 July |  | 6 | Searched for a suitable TSP algorithm, and integrated it into our current implementation of the app. Encountered an obstacle whereby we do not know how to make use of the algorithm to produce the desired solution. |
 | Implementing RecyclerView as a container for ListActivity | 22 July |  | 10 | Implemented RecyclerView to hold the previously added locations, added a delete function as well, which removes the item, but does not remove it from the list that is passed to RouteView when the Generate button is clicked. (note: was busy due to a family member's hospitalisation) | 
 | Cleaning up code | 25 July |  | 2 | Cleaned up clutter and made code more readable. |
-
+| Added app icon | 26 July | 1 | 1 | - |
+| Meeting to plan UI and optimising usability | 4 | 4 | 26 July | - |
 ##### Workload as of Milestone 2
 | Total Hours (Jarryl) | 97 |
 |---|---|

@@ -36,7 +36,7 @@ import java.util.List;
     shows a RecyclerView locationList of the added locations
  */
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MainMainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap map;
     private static final int LOCATION_REQUEST = 500;

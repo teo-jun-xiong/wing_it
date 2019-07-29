@@ -18,13 +18,17 @@ Github | 28 May | 2 | 2 | Attempted to figure out how to use Github as a platfor
 | Understanding Github integration with Android Studio | 26 June | 8 | 8 | Needed to use Github so that we could easily port over our work from laptop to desktop, and between one another. Increasing the ease of accessibility to edit our codes anywhere we were to prevent any loss of ideas / solutions. Since Github was a very unfamiliar platform for us, it took us quite a while to understand the interface and how each of the functions were for. 
 | Updating README and Project Log for Milestone 2 | 30 June | 12 | 12 | Reviewed current progress and updated README. Realised that we are not on track towards a Minimal Viable Product that we can be satisfied with, especially in terms of implementing the URL request handling. Most likely, this has to be pushed to after Milestone 2. Moreover, there is no UI design to speak of. We were able to update the README as we did the project at the same time, allowing for an easier updating of the README. | 
 | Attempt #2 at devising SSSP algorithm | 7 July | 0 | 4 | Attempted to scale the previous extraction of the duration and distance from the JSON, for every point of interest. Faced an issue where we were unable to store the duration between every point and every other point in an adjacency matrix - every element in the matrix would be 0. Using print statements, it seems like the ordering of the task is not as intended. | 
-| Reading up on Dyanmic Programming and TSP | 10 July |  | 3 | Realised Travelling Salesman Problem is what our scenario is, and had to ditch the initial SSSP train of thought. |
-| Searching for TSP and implementing into app | 12 July |  | 6 | Searched for a suitable TSP algorithm, and integrated it into our current implementation of the app. Encountered an obstacle whereby we do not know how to make use of the algorithm to produce the desired solution. |
-| Implementing RecyclerView as a container for ListActivity | 22 July |  | 10 | Implemented RecyclerView to hold the previously added locations, added a delete function as well, which removes the item, but does not remove it from the list that is passed to RouteView when the Generate button is clicked. (note: was busy due to a family member's hospitalisation) | 
-| Cleaning up code | 25 July |  | 2 | Cleaned up clutter and made code more readable. |
-| Added app icon | 26 July | 1 | 1 | - |
-| Meeting to plan UI and optimising usability | 4 | 4 | 26 July | - |
-##### Workload as of Milestone 2
-| Total Hours (Jarryl) | 97 |
+| Reading up on Dyanmic Programming and TSP | 10 July | 5 | 3 | Realised Travelling Salesman Problem is what our scenario is, and had to ditch the initial SSSP train of thought. |
+| Searching for TSP and implementing into app | 12 July | 8 | 6 | Searched for a suitable TSP algorithm, and integrated it into our current implementation of the app. Encountered an obstacle whereby we do not know how to make use of the algorithm to produce the desired solution. |
+| Implementing RecyclerView as a container for LocationListActivity | 22 July | 12 | 12 | Implemented RecyclerView to hold the previously added locations, added a delete function as well, which removes the item, but does not remove it from the list that is passed to RouteView when the Generate button is clicked. (note: was busy due to a family member's hospitalisation) | 
+| Cleaning up code | 25 July | 9 | 9 | Cleaned up clutter and made code more readable. |
+| Designed and added app icon | 26 July | 5 | 3 | Thinking of an app icon that will symbolise our app's main feature |
+| Meeting to plan UI and optimising usability | 26 July | 10 | 10 | To make the app more user friendly as well as making it as little bugs as we could with our current skillsets. |
+| Beautified app | 27 July | 9 | 11 | Added nicer buttons, app background, cards, colours, and fonts. | 
+| Milestone 3 Video | 28 July | 10 | 12 | Coming up with the script, the videoing of the app and the editing of the videos to make is more easier to understand the app's functionalities. | 
+
+##### Workload as of Milestone 3
+| Group member | Total hours |
 |---|---|
-|Total Hours (Jun Xiong) | 97 |
+| Jarryl | 165 |
+| Jun Xiong | 167 |

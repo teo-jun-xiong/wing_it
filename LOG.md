@@ -21,13 +21,13 @@ Github | 28 May | 2 | 2 | Attempted to figure out how to use Github as a platfor
 | Reading up on Dyanmic Programming and TSP | 10 July | 5 | 3 | Realised Travelling Salesman Problem is what our scenario is, and had to ditch the initial SSSP train of thought. |
 | Searching for TSP and implementing into app | 12 July | 8 | 6 | Searched for a suitable TSP algorithm, and integrated it into our current implementation of the app. Encountered an obstacle whereby we do not know how to make use of the algorithm to produce the desired solution. |
 | Implementing RecyclerView as a container for LocationListActivity | 22 July | 12 | 12 | Implemented RecyclerView to hold the previously added locations, added a delete function as well, which removes the item, but does not remove it from the list that is passed to RouteView when the Generate button is clicked. (note: was busy due to a family member's hospitalisation) | 
-| Cleaning up code | 25 July | 5 | 5 | Cleaned up clutter and made code more readable. |
-| Designed and added app icon | 26 July | 3 | 3 | - |
-| Meeting to plan UI and optimising usability | 4 | 4 | 26 July | - |
-| Beautified app | 27 July | 8 | 10 | Added nicer buttons, app background, cards, colours, and fonts. | 
-| Milestone 3 | 28 July | 6 | 8 | Made longer video, and a more detailed README. | 
+| Cleaning up code | 25 July | 9 | 9 | Cleaned up clutter and made code more readable. |
+| Designed and added app icon | 26 July | 5 | 3 | Thinking of an app icon that will symbolise our app's main feature |
+| Meeting to plan UI and optimising usability | 26 July | 10 | 10 | To make the app more user friendly as well as making it as little bugs as we could with our current skillsets. |
+| Beautified app | 27 July | 9 | 11 | Added nicer buttons, app background, cards, colours, and fonts. | 
+| Milestone 3 Video | 28 July | 10 | 12 | Coming up with the script, the videoing of the app and the editing of the videos to make is more easier to understand the app's functionalities. | 
 
 ##### Workload as of Milestone 3
-| Total Hours (Jarryl) | 97 |
+| Total Hours (Jarryl) | 165 |
 |---|---|
-|Total Hours (Jun Xiong) | 97 |
+|Total Hours (Jun Xiong) | 167 |

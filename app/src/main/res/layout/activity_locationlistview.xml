@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/locationlistview_background"
+    android:background="@drawable/background"
     android:orientation="vertical"
+    app:cardPreventCornerOverlap="false"
+
     android:theme="@style/AppTheme">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="72dp"
-        android:padding="4dp"
+        android:layout_marginTop="72dp"    app:cardPreventCornerOverlap="false"
+
+        android:padding="6dp"
         android:scrollbars="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

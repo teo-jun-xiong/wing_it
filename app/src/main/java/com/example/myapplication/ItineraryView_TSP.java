@@ -35,13 +35,13 @@ public class ItineraryView_TSP {
                             + "O(n^2*2^n) requires way too much computation for any modern home computer to handle");
     }
 
-    // Returns the optimal tour for the traveling salesman problem.
+    // Returns the optimal originalTSPSolution for the traveling salesman problem.
     public List<Integer> getTour() {
         if (!ranSolver) solve();
         return tour;
     }
 
-    // Returns the minimal tour cost.
+    // Returns the minimal originalTSPSolution cost.
     public double getTourCost() {
         if (!ranSolver) solve();
         return minTourCost;
@@ -80,7 +80,7 @@ public class ItineraryView_TSP {
             }
         }
 
-        // Connect tour back to starting node and minimize cost.
+        // Connect originalTSPSolution back to starting node and minimize cost.
         for (int i = 0; i < N; i++) {
             if (i == start) continue;
             double tourCost = memo[i][END_STATE] + distance[i][start];

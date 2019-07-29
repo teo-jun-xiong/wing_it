@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -39,15 +40,15 @@ public class LocationListView extends AppCompatActivity {
 
         Intent incomingIntent = getIntent();
         intentList = incomingIntent.getStringArrayListExtra("name");
-        initialiseLocationListView_RecyclerView(intentList);
+        initLocationListView_RecyclerView();
     }
 
-    private void initialiseLocationListView_RecyclerView(ArrayList<String> list) {
+    private void initLocationListView_RecyclerView() {
         recyclerArrayList = new ArrayList<>();
-        int len = list.size();
+        int len = intentList.size();
 
-        for (int i = 0; i < len; i++) {
-            recyclerArrayList.add(new LocationListView_RecyclerItem(list.get(i), list.get(i)));
+        for (int i = 0; i < len; i += 2) {
+            recyclerArrayList.add(new LocationListView_RecyclerItem(intentList.get(i), intentList.get(i+1)));
         }
 
         recyclerView = findViewById(R.id.ListRecyclerView);
@@ -85,7 +86,6 @@ public class LocationListView extends AppCompatActivity {
 
         } else {
             recyclerArrayList.get(position).setTextHours(Integer.parseInt(recyclerHours.getText().toString()));
-            System.out.println(position+""+recyclerHours.getText().toString()+""+ recyclerArrayList.get(position).getTextHours());
         }
     }
 
@@ -104,7 +104,6 @@ public class LocationListView extends AppCompatActivity {
             for (int i = 0; i < arr_hours.length; i++){
                 arr_hours[i] = recyclerArrayList.get(i).getTextHours();
             }
-            System.out.println(arr_hours[0] + " " + arr_hours[1] + " " + arr_hours[2]);
 
             Intent intent = new Intent(this, ItineraryView.class);
             intent.putExtra("array", recyclerArrayList);

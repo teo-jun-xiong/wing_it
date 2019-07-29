@@ -101,9 +101,21 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));
 
             // the locationList contains various possible addresses, index 0 is the most relevant result
+            locationList.add(capitaliseString(location));
             locationList.add(address.getAddressLine(0));
             locationSearch.setText("");
         }
+    }
+
+    private String capitaliseString(String location) {
+        String[] strings = location.split(" ");
+        String temp = "";
+
+        for (int i = 0; i < strings.length; i++){
+            String word = strings[i];
+            temp += word.substring(0,1).toUpperCase() + word.substring(1) + " ";
+        }
+        return temp;
     }
 
     public void onList(View view) {

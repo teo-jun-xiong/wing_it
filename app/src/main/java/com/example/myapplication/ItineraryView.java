@@ -20,30 +20,27 @@ import java.util.Queue;
  */
 
 public class ItineraryView extends AppCompatActivity implements ItineraryView_GeoTask.Geo {
-
-    TextView textView;
-    List<Integer> tour;
-    double[][] adj_mtx;
-    String str_from, str_to;
+    List<Integer> originalTSPSolution;
+    double[][] AdjacencyMatrix;
+    String url_origin, url_destination;
     double duration_btn_points;
-    ArrayList<LocationListView_RecyclerItem> incoming_List;
+    ArrayList<LocationListView_RecyclerItem> LLV_recyclerList;
     int incoming_days, incoming_hours;
     Queue<LocationListView_QueueIntegerPair> q = new LinkedList<>();
-    int[] incoming_Hours_Array;
-    ItineraryView_Day[] dailyItinerary;
+    int[] HoursArray;
+    ItineraryView_Day[] IV_DayArray;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itineraryview);
-        textView = findViewById(R.id.TSPtext);
 
         Intent incomingIntent = getIntent();
-        incoming_List = incomingIntent.getParcelableArrayListExtra("array");
+        LLV_recyclerList = incomingIntent.getParcelableArrayListExtra("array");
         incoming_days = incomingIntent.getIntExtra("days", 0);
         incoming_hours = incomingIntent.getIntExtra("hours", 0);
-        incoming_Hours_Array = incomingIntent.getIntArrayExtra("hours_array");
-        incoming_Hours_Array[0] = 0; // 0 is hotel, so 0 hours
+        HoursArray = incomingIntent.getIntArrayExtra("hours_array");
+        HoursArray[0] = 0; // 0 is hotel, so 0 hours
         processData();
     }
 
@@ -52,17 +49,17 @@ public class ItineraryView extends AppCompatActivity implements ItineraryView_Ge
         int curr_day = 1;
         boolean exceeded = false;
         int sum = 0;
-        dailyItinerary = new ItineraryView_Day[incoming_days + 1];
+        IV_DayArray = new ItineraryView_Day[incoming_days + 1];
 
-        for (int j = 0; j < dailyItinerary.length; j++) {
-            dailyItinerary[j] = new ItineraryView_Day();
+        for (int j = 0; j < IV_DayArray.length; j++) {
+            IV_DayArray[j] = new ItineraryView_Day();
         }
 
         for (int i = 1; i < tour.size() - 1; i++) {
-            sum += incoming_Hours_Array[tour.get(i)];
+            sum += HoursArray[tour.get(i)];
 
             if (sum <= incoming_hours) {
-                dailyItinerary[curr_day].addItinerary(tour.get(i));
+                IV_DayArray[curr_day].addItinerary(tour.get(i));
 
             } else {
                 curr_day++;
@@ -77,42 +74,30 @@ public class ItineraryView extends AppCompatActivity implements ItineraryView_Ge
         }
 
         if (exceeded) {
-            insufficientTime();
+            TextView itinerary = findViewById(R.id.TSPtext);
+            itinerary.setText("Insufficient time to visit all places of interest!");
 
         } else {
-            showItinerary();
+            initRecyclerView();
         }
-
-    }
-
-    private void showItinerary() {
-        createRecyclerView();
-    }
-
-    private void createRecyclerView() {
-        initRecyclerView();
-    }
-
-    private void insufficientTime() {
-        TextView itinerary = findViewById(R.id.TSPtext);
-        itinerary.setText("Insufficient time to visit all places of interest!");
     }
 
     // this function currently takes the first 2 input locations and adds them to the URL,
     // which is then executed by initialising a new Geotask object with the URL as the parameter
     private void processData() {
-        adj_mtx = new double[incoming_List.size()][incoming_List.size()];
+        AdjacencyMatrix = new double[LLV_recyclerList.size()][LLV_recyclerList.size()];
 
-        // store data in adj_mtx
-        for (int i = 0; i < incoming_List.size() - 1; i++)
-            for (int j = i + 1; i != j && j < incoming_List.size(); j++) {
+        // store data in AdjacencyMatrix
+        for (int i = 0; i < LLV_recyclerList.size() - 1; i++)
+            for (int j = i + 1; i != j && j < LLV_recyclerList.size(); j++) {
                 q.add(new LocationListView_QueueIntegerPair(i, j));
                 System.out.println(i + " " + j + q.peek().get_row() + " " + q.peek().get_col());
-                str_from = incoming_List.get(i).getText1();
-                str_to = incoming_List.get(j).getText1();
-                String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + str_from + "&destinations=" + str_to + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
+                url_origin = LLV_recyclerList.get(i).getText2();
+                url_destination = LLV_recyclerList.get(j).getText2();
+                String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + url_origin + "&destinations=" + url_destination + "&mode=driving&language=fr-FR&avoid=tolls&key=AIzaSyAJumGU3xXEGgWzit5j8ncu14grobB5ZYI";
                 new ItineraryView_GeoTask(ItineraryView.this).execute(url);
             }
+        System.out.println("done");
     }
 
     // this is only called by the Geo interface in ItineraryView_GeoTask class
@@ -128,21 +113,21 @@ public class ItineraryView extends AppCompatActivity implements ItineraryView_Ge
             LocationListView_QueueIntegerPair temp_pair = q.poll();
             int temp_r = temp_pair.get_row();
             int temp_c = temp_pair.get_col();
-            adj_mtx[temp_r][temp_c] = duration_btn_points;
-            adj_mtx[temp_c][temp_r] = duration_btn_points;
+            AdjacencyMatrix[temp_r][temp_c] = duration_btn_points;
+            AdjacencyMatrix[temp_c][temp_r] = duration_btn_points;
         }
 
         // executes TSP when the data is processed
         if (q.isEmpty()) {
-            ItineraryView_TSP solver = new ItineraryView_TSP(adj_mtx);
-            tour = solver.getTour();
-            generateDailyItinerary(tour);
+            ItineraryView_TSP solver = new ItineraryView_TSP(AdjacencyMatrix);
+            originalTSPSolution = solver.getTour();
+            generateDailyItinerary(originalTSPSolution);
             /* tourCost = solver.getTourCost();
             StringBuilder temp = new StringBuilder();
             temp.append("Tour:");
-            temp.append(tour);
+            temp.append(originalTSPSolution);
 
-            textView.setText(temp);
+            ItineraryView_TextView.setText(temp);
             */
         }
     }
@@ -152,19 +137,19 @@ public class ItineraryView extends AppCompatActivity implements ItineraryView_Ge
         RecyclerView mRecyclerView;
         ItineraryView_RecyclerAdapter mAdapter;
         RecyclerView.LayoutManager mLayoutManager;
-        int len = dailyItinerary.length;
+        int len = IV_DayArray.length;
 
         for (int i = 1; i < len; i++) {
             String temp = "1. ";
-            ItineraryView_Day d = dailyItinerary[i];
-            temp += incoming_List.get(0).getText1() + "\n";
+            ItineraryView_Day d = IV_DayArray[i];
+            temp += LLV_recyclerList.get(0).getText1() + " (" + LLV_recyclerList.get(0).getText2() + ")\n";
 
             int j;
             for (j = 0; j < d.getSize(); j++) {
-                temp += (j + 2) + ". " + incoming_List.get(d.getItinerary().get(j)).getText1() + "\n";
+                temp += (j + 2) + ". " + LLV_recyclerList.get(d.getItinerary().get(j)).getText1() + " (" + LLV_recyclerList.get(d.getItinerary().get(j)).getText2() + ")\n";
             }
 
-            temp += (j + 2) + ". " + incoming_List.get(0).getText1();
+            temp += (j + 2) + ". " + LLV_recyclerList.get(0).getText1() + " (" + LLV_recyclerList.get(0).getText2() + ")";
 
 
             itineraryViewItemArrayListRecycler.add(new ItineraryView_RecyclerItem(i, temp));

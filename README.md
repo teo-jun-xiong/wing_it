@@ -1,7 +1,7 @@
 # wing it!, a Travel Itinerary Planner
 ![App Icon](https://i.imgur.com/S46xkWp.png)
 
-wing it! is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. Targeted level of achievement: Apollo. 
+wing it! is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. Targeted level of achievement: Gemini. 
 
 Wing it: to improvise, to do something without proper preparation. wing it! was created with the notion that time spent travelling is precious and memorable, and should not be wasted as a result of inefficient planning. It allows users to customise their trip to ensure that they are able to visit all their places of interest!
 

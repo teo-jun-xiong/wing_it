@@ -24,8 +24,8 @@ Github | 28 May | 2 | 2 | Attempted to figure out how to use Github as a platfor
 | Cleaning up code | 25 July | 5 | 5 | Cleaned up clutter and made code more readable. |
 | Designed and added app icon | 26 July | 3 | 3 | - |
 | Meeting to plan UI and optimising usability | 4 | 4 | 26 July | - |
-| Beautified app | 15 | 15 | 27 July | Added nicer buttons, app background, cards, colours, and fonts. | 
-| Milestone 3 | 8 | 8 | 29 July | Made longer video, and a more detailed README. | 
+| Beautified app | 27 July | 8 | 10 | Added nicer buttons, app background, cards, colours, and fonts. | 
+| Milestone 3 | 28 July | 6 | 8 | Made longer video, and a more detailed README. | 
 
 ##### Workload as of Milestone 3
 | Total Hours (Jarryl) | 97 |

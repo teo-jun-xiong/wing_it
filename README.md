@@ -217,7 +217,11 @@ if (location.equals("")) {
 
 
 ## Test Log
-![Image of flowchart](https://i.imgur.com/dZyoRoC.png) 
+![Image of test](https://i.imgur.com/nYPyt5R.png) 
+
+
+## Project Log
+[LOG.md](https://github.com/waaaflesss/wing_it/blob/master/LOG.md)
 
 
 ## Software Engineering Principles Employed
@@ -259,4 +263,11 @@ Our code is coded such that it is simple to read without in-depth knowledge of t
 - [x] \(Optional) UI/ user-friendlyness improvement
 - [x] Debugging
 
-Following from the core features section, we have two core features that are yet to be implemented: deleting, viewing a daily itinerary, and including the time that a user wishes to spend at a pace of interest. These core features are listed in order of increasing priority, as we believe that the defining point of Wing It is its ability to input the intended duration. We aim to also solve the issues faced during the duration of milestone 2 in hopes to be able to make Wing It user-friendly and easy to understand. Implementation of Google's Distance Matrix has proven an issue for us close to the end of Milestone 2, but we are confident that this will be solved by Milestone 3 with deeper understanding of Google's developer guides, and under the guidance of our advisor.
+## Development Plan towards Splashdown
+- [ ] Fix current issues
+- [ ] Conduct more rigourous testing
+- [ ] Improve UI/UX
+- [ ] Create poster for splashdown
+
+
+## Response to Milestone 2 feedback

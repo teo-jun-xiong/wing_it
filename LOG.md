@@ -28,6 +28,7 @@ Github | 28 May | 2 | 2 | Attempted to figure out how to use Github as a platfor
 | Milestone 3 Video | 28 July | 10 | 12 | Coming up with the script, the videoing of the app and the editing of the videos to make is more easier to understand the app's functionalities. | 
 
 ##### Workload as of Milestone 3
-| Total Hours (Jarryl) | 165 |
+| Group member | Total hours |
 |---|---|
-|Total Hours (Jun Xiong) | 167 |
+| Jarryl | 165 |
+| Jun Xiong | 167 |

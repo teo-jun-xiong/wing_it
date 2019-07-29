@@ -32,7 +32,7 @@ One of the most widely used trip planner, is one that forms the foundation of ma
 |![Screenshot 1](https://i.imgur.com/fvozBza.png)| <ul><li>A. FAQ to guide users on how to use wing it!.</li><li>B. Search field for user to search for a place of interest.</li><li>C. Button to add a place of interest after typing in the search text in C. The hotel or origin always has to be the first location added. </li><li>D. Button to show a CardView of all the added places of interest.</li><li>E. Centers the map on the user's location. </li></ul></li><li>F. Zoom buttons. </li></ul> |
 |![Screenshot 2](https://i.imgur.com/ELgI4l9.png)| <ul><li>A. FAQ to guide users on how to use wing it!.</li><li>B. Input field for the number of days of the user's trip.</li></ul></li><li>C. Number of hours the user intend to spend per day during the trip.</li></ul></li><li>D. Button to generate an itinerary using the user's input.</li></ul></li><li>E. Delete button to remove a place of interest.</li></ul></li><li>F. The text on top shows the user's search text while the bottom text shows the place of interest's address.</li></ul></li><li>G. Input field for number of hours the user wishes to spend at a certain place of interest.</li></ul></li><li>H. Button to enter G into the code. Must be pressed or the time spent will be assumed to be 0, which will mess up the algorithm.</li></ul>|
 |![Screenshot 3](https://i.imgur.com/RrjkBLl.png)| <ul><li>A. FAQ to guide users on how to use wing it!.</li></ul><ul><li>B. CardView for the daily itinerary. Each card will show the day of the trip, as well as in which order to visit that day's places of interest. Note that the day always starts and end at the hotel (or the first place of interest).</li></ul>|
-|![Screenshot 4](https://i.imgur.com/PY9JQQ4.png<ul><li>A. FAQ to guide users on how to use wing it!.</li></ul><ul><li>B. Should there be no way to visit all the places of interest given the user's input parameters, this text will be displayed, prompting the user to either remove places of interest or to modify some of the numbers.</li></ul>|
+|![Screenshot 4](https://i.imgur.com/PY9JQQ4.png)|<ul><li>A. FAQ to guide users on how to use wing it!.</li></ul><ul><li>B. Should there be no way to visit all the places of interest given the user's input parameters, this text will be displayed, prompting the user to either remove places of interest or to modify some of the numbers.</li></ul>|
 
 
 ## User Stories and Core Features
@@ -82,6 +82,114 @@ if (location.equals("")) {
 
 - **Core feature 3**: this function is implemented using a ```RecyclerView``` and ```RecyclerViewAdapter```, which loads a CardView of the added locations. Each 'card' consists of the street address, "delete", "done" buttons, and an input field for the number of hours the user wishes to spend at that location. 
 
+<details><summary>XML for recyclerView item for LocationListView</summary>
+<p>
+        
+```java
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
+    app:cardBackgroundColor="#00000000"
+    app:cardCornerRadius="6dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:layout_marginTop="30dp"
+        android:background="#DA1B3F70">
+
+        <ImageView
+            android:id="@+id/recycler_delete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:foregroundGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_delete" />
+
+        <TextView
+            android:id="@+id/recycler_textView"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/recycler_delete"
+            android:fontFamily="@font/montserrat"
+            android:text="Line 1"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_textView2"
+            app:layout_constraintStart_toEndOf="@+id/recycler_delete"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recycler_textView2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_textView"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="8dp"
+            android:layout_toEndOf="@+id/recycler_delete"
+            android:fontFamily="@font/montserrat"
+            android:text="Line 2"
+            android:textColor="#b5b5b5"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/recycler_hours" />
+
+        <EditText
+            android:id="@+id/recycler_hours"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_toStartOf="@+id/recycler_done"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:hint="Input hours"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textColorHint="#b5b5b5"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/recycler_done"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/recycler_done"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_done" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.v7.widget.CardView>
+```
+</p>
+</details>
 
 **_As a user, I want to include the time I wish to spend at each place of interest so that I can maximise my time overseas._**
 
@@ -90,23 +198,25 @@ if (location.equals("")) {
 
 **_As a user, I want to be able to obtain a daily itinerary that starts from my place of accomodations._**
 
-- **Core feature 5**: after pressing on the "generate" button in ```ListView.java```, the Travelling Salesman Problem is solved by calling  ```TspDynamicProgrammingIterative.java```, generating a solution in the form of an ArrayList, e.g. \[0 -> 2 -> 3 -> 1 -> 0], which shows the order of travelling from a starting point, going through all other places, and returning to the starting point. 
+- **Core feature 5**: after pressing on the "generate" button in ```LocationListView.java```, the Travelling Salesman Problem is solved by calling  ```ItineraryViewTSP.java```, generating a solution in the form of an ArrayList, e.g. \[0 -> 2 -> 3 -> 1 -> 0], which shows the order of travelling from a starting point, going through all other places, and returning to the starting point. 
 
 - The solution is then supplemented by using the array of hours intended to spend at each location, number of days in trip, and number of estimated hours intended to spend per day during the trip. Then, a daily itinerary is then shown. 
 
-- This solution, may not be the most optimal due to our general lack of experience in dynamic programming. Our solution is simply counting the accumulated hours at the locations in a day, and when that amount exceeds the intended hours spent per day, we would end the day, and begin planning for the next day. For example, if ```TspDynamicProgrammingIterative.java``` returns a solution: \[0 -> 2 -> 3 -> 1 -> 0], and on the first day, visiting 0 -> 2 -> 3 -> 1 exceeds the intended hours spent per day, the last location is swapped for the starting location, day 1: 0 -> 2 -> 3 -> 0. The itinerary for day 2 would then be going through the last location, 0 -> 1 -> 0. 
+- This solution, may not be the most optimal due to our general lack of experience in dynamic programming. Our solution is simply counting the accumulated hours at the locations in a day, and when that amount exceeds the intended hours spent per day, we would end the day, and begin planning for the next day. For example, if ```ItineraryViewTSP.java``` returns a solution: \[0 -> 2 -> 3 -> 1 -> 0], and on the first day, visiting 0 -> 2 -> 3 -> 1 exceeds the intended hours spent per day, the last location is swapped for the starting location, day 1: 0 -> 2 -> 3 -> 0. The itinerary for day 2 would then be going through the last location, 0 -> 1 -> 0. 
 
 
 ## Issues Faced
 | Summary of Issue | Details of Issue |
 |---|---|
 | ~~Null inputs for the "add" button causes app to crash~~ | Despite having the null check in ```if (location != null or !location.equals(""))```, the app crashes when the search bar is empty, after the "ADD" button is clicked. Solved by implementing a Toast to prompt users to include a valid query: ```Toast.makeText(getApplicationContext(), "Please input a valid query!", Toast.LENGTH_SHORT).show();``` |
-| Deletion of a location doesn't remove it from map | Deletion works well except that it does not remove the previously placed marker on the map. |
-| Unable to obtain name of location | We were unable to obtain a landmark name of a place of interest. For example, if a user were to key in "bedok mall" in the search field, the API would accurately return the intended location, however, we were not able to obtain back "Bedok Mall". The closest substitute we found and are currently using is obtaining the street address: 311 New Upper Changi Rd, Singapore 467360, and is done using: ```to_print[i] = addressList.get(0).getAddressLine(0)```. This makes it difficult for users to identify the place of interest (especially since they are tourists). |
-| ~~Multiple threads made adding to a list difficult~~ | When we intended to increase the scale of obtaining the result from the Google Maps API using a URL request, we encountered an issue where the GeoTask's ```execute()``` occurs in the background and not concurrently after it was called in ```RouteView```. Found out that this was a result of ```AsyncTask``` utilising threads. Previously, we used if-else to circumvent this, which proved to be too complex and confusing. Switched to a ```Queue``` to store the row and column pair, and when the background task is complete, it would pop the top of the queue. We found this to be a much simpler way to store the data in the adjacency matrix. | 
+| Certain search text will cause app to crash | Ambiguous search text has caused the app to crash on multiple occasions, such as "ite" and "white sands". |
+| Unable to obtain name of location | We were unable to obtain a landmark name of a place of interest. For example, if a user were to key in "bedok mall" in the search field, the API would accurately return the intended location, however, we were not able to obtain back "Bedok Mall". The closest substitute we found and are currently using is obtaining the street address: 311 New Upper Changi Rd, Singapore 467360, and is done using by returning the user's initial search text. As a result, the text shown is dependent on the user's input. This makes it difficult for users to identify the place of interest, especially since they are tourists, if the user did not specify the place of interest, i.e. nus rather than National University of Singapore. |
+| ~~Multiple threads made adding to a list difficult~~ | When we intended to increase the scale of obtaining the result from the Google Maps API using a URL request, we encountered an issue where the GeoTask's ```execute()``` occurs in the background and not concurrently after it was called in ```ItineraryView.java```. Found out that this was a result of ```AsyncTask``` utilising threads. Previously, we used if-else to circumvent this, which proved to be too complex and confusing. Switched to a ```Queue``` to store the row and column pair, and when the background task is complete, it would pop the top of the queue. We found this to be a much simpler way to store the data in the adjacency matrix. | 
+| Deleting a card off of ```LocationListView.java``` does not remove the marker ```MainActivity.java``` | The marker still remains on the map even after it is deleted. |
+| After deletion of a card, and pressing the list button, the removed item is not removed from the list | The previously removed item will not have been removed, as such, it is sometimes troublesome to add and remove items. |
 
 
-## Program Flowchart
+## Test Log
 ![Image of flowchart](https://i.imgur.com/dZyoRoC.png) 
 
 
@@ -114,7 +224,7 @@ if (location.equals("")) {
 ##### **S.O.L.I.D.**
 - Single Responsiblity Principle
 
-Every class is assigned only a single functionality. ```MapActivity``` is responsible for loading the map which allows users to add places of interest; ```ListView``` is responsible for displaying the current list of places of interest to the users; ```RouteView``` is responsible for displaying a generated route for the users' itinerary. 
+Every class is assigned only a single functionality. ```MainActivity.java``` is responsible for loading the map which allows users to add places of interest; ```LocationListView.jkava``` is responsible for displaying the current list of places of interest to the users; ```RouteView``` is responsible for displaying a generated route for the users' itinerary. 
 
 - Open/ Closed Principle
 
@@ -126,27 +236,27 @@ This principle is not employed as our Android app is not complicated and at most
 
 - Interface Segregation Principle 
 
-No interface implemented.
+Interface is heavily used in ```ItineraryView_GeoTask.java```, ```LocationListView_RecyclerAdapter.java```, as well as ```ItineraryView_RecyclerAdapter.java```.
 
 - Dependency Inversion Principle
 
-No interface implemented, although its importance is appreciated and will be taken note of once we are more advanced in the development of the app. 
+Its importance is appreciated and will be taken note of once we are more advanced in the development of the app. 
 
 ##### **D.R.Y. (Don't Repeat Yourself)**
 
-There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, whcih we plan to streamline. We need to figure out a better way of passing data from one Java file to another, or to store it in a database using mySQL which would require extra time to learn. 
+There is no repeated code apart from calling ```Geocoder``` to obtain the information regarding the user's search input, whcih we plan to streamline. 
 
 ##### **K.I.S.S. (Keep It Simple, Stupid)**
 
 Our code is coded such that it is simple to read without in-depth knowledge of the context, moreover, comments are inserted to clarify on methods that may be unclear. 
 
 
-## Development Plan towards Milestone 3
+## Milestone 2's Development Plan towards Milestone 3
 - [x] Implement **delete** functionality
-- [ ] Implement **daily itinerary**
+- [x] Implement **daily itinerary**
 - [x] Devise ~~SSSP~~ TSP algorithm
 - [x] Implement time as a factor rather than distance for SSSP 
-- [ ] \(Optional) UI/ user-friendlyness improvement
-- [ ] Debugging
+- [x] \(Optional) UI/ user-friendlyness improvement
+- [x] Debugging
 
 Following from the core features section, we have two core features that are yet to be implemented: deleting, viewing a daily itinerary, and including the time that a user wishes to spend at a pace of interest. These core features are listed in order of increasing priority, as we believe that the defining point of Wing It is its ability to input the intended duration. We aim to also solve the issues faced during the duration of milestone 2 in hopes to be able to make Wing It user-friendly and easy to understand. Implementation of Google's Distance Matrix has proven an issue for us close to the end of Milestone 2, but we are confident that this will be solved by Milestone 3 with deeper understanding of Google's developer guides, and under the guidance of our advisor.

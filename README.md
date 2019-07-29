@@ -1,6 +1,9 @@
-# Wing It!, a Travel Itinerary Planner
+# wing it!, a Travel Itinerary Planner
 ![App Icon](https://i.imgur.com/S46xkWp.png)
-Wing It! is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. 
+
+wing it! is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. 
+
+Wing it: to improvise, to do something without proper preparation. wing it! was created with the notion that time spent travelling is precious and memorable, and should not be wasted as a result of inefficient planning. It allows users to customise their trip to ensure that they are able to visit all their places of interest!
 
 
 ## Problem Motivations
@@ -22,15 +25,14 @@ Disclaimer: Wing It is developed with the intention of it being a supplement - n
 One of the most widely used trip planner, is one that forms the foundation of many popular trip planners out there: Google Maps. There are many powerful features that it provides: fastest routes, shortest routes, Google Trips. It is admittedly simple to draw parallels from Google Trips and Wing It, but the difference between the two is what makes Wing It a great supplementary tool for travellers: timme. Building upon Google Trips' amazing functionalities, we want to include the ability for users to include the duration they wish to stay at a certain location, to create an itinerary that is centered around making the most of their limited time overseas. 
 
 
-## Installation
-
 
 ## Usage
 | Screenshot | Explanation |
 |---|---|
-|![Screenshot 1](https://i.imgur.com/6FeacPo.jpg)| <ul><li>1.1. Allows user to center the map on their current location.</li><li>1.2. Allows user to zoom in (and out).</li><li>1.3. Search field for users to input to search for a place of interest.</li><li>1.4. This button allows the user to add the place of interest **after** typing it in the search field (1.3).</li><li>1.5. This button shows the places of interest the user has input, and brings it to the next screen.</li></ul> |
-|![Screenshot 2](https://i.imgur.com/R0AByKf.png)| <ul><li>2.1. Displays a list of the places of interest that the user has input.</li><li>2.2. Clicking this button will bring the user to the next screen. We intend to add the delete functionality in this screen as it seems rather intuitive.</li></ul>|
-|![Screenshot 3](https://i.imgur.com/EVJYCYl.png)| <ul><li>This screen is underdeveloped, but the general idea is that it will display a day to day itinerary, or a map view with polylines showing which routes to go, or both.</li></ul>|
+|![Screenshot 1](https://i.imgur.com/fvozBza.png)| <ul><li>A. FAQ to guide users on how to use wing it!.</li><li>B. Search field for user to search for a place of interest.</li><li>C. Button to add a place of interest after typing in the search text in C. The hotel or origin always has to be the first location added. </li><li>D. Button to show a CardView of all the added places of interest.</li><li>E. Centers the map on the user's location. </li></ul></li><li>F. Zoom buttons. </li></ul> |
+|![Screenshot 2](https://i.imgur.com/ELgI4l9.png)| <ul><li>A. FAQ to guide users on how to use wing it!.</li><li>B. Input field for the number of days of the user's trip.</li></ul></li><li>C. Number of hours the user intend to spend per day during the trip.</li></ul></li><li>D. Button to generate an itinerary using the user's input.</li></ul></li><li>E. Delete button to remove a place of interest.</li></ul></li><li>F. The text on top shows the user's search text while the bottom text shows the place of interest's address.</li></ul></li><li>G. Input field for number of hours the user wishes to spend at a certain place of interest.</li></ul></li><li>H. Button to enter G into the code. Must be pressed or the time spent will be assumed to be 0, which will mess up the algorithm.</li></ul>|
+|![Screenshot 3](https://i.imgur.com/RrjkBLl.png)| <ul><li>A. FAQ to guide users on how to use wing it!.</li></ul><ul><li>B. CardView for the daily itinerary. Each card will show the day of the trip, as well as in which order to visit that day's places of interest. Note that the day always starts and end at the hotel (or the first place of interest).</li></ul>|
+|![Screenshot 4](https://i.imgur.com/PY9JQQ4.png<ul><li>A. FAQ to guide users on how to use wing it!.</li></ul><ul><li>B. Should there be no way to visit all the places of interest given the user's input parameters, this text will be displayed, prompting the user to either remove places of interest or to modify some of the numbers.</li></ul>|
 
 
 ## User Stories and Core Features

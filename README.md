@@ -1,7 +1,7 @@
 # wing it!, a Travel Itinerary Planner
 ![App Icon](https://i.imgur.com/S46xkWp.png)
 
-wing it! is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. 
+wing it! is an Android app developed on Android Studio for the fulfillment of CP2106 (Orbital) in the summer of 2019. Developed by Team Seas the Days, consisting of Jarryl Yeo Zhi Xiang and Teo Jun Xiong. Targeted level of achievement: Apollo. 
 
 Wing it: to improvise, to do something without proper preparation. wing it! was created with the notion that time spent travelling is precious and memorable, and should not be wasted as a result of inefficient planning. It allows users to customise their trip to ensure that they are able to visit all their places of interest!
 
@@ -23,7 +23,6 @@ This project will consist of developing an Android application largely developin
 Disclaimer: Wing It is developed with the intention of it being a supplement - not a one-stop application service for travellers to gather information, book acommodations, and plan their itineraries with. 
 
 One of the most widely used trip planner, is one that forms the foundation of many popular trip planners out there: Google Maps. There are many powerful features that it provides: fastest routes, shortest routes, Google Trips. It is admittedly simple to draw parallels from Google Trips and Wing It, but the difference between the two is what makes Wing It a great supplementary tool for travellers: timme. Building upon Google Trips' amazing functionalities, we want to include the ability for users to include the duration they wish to stay at a certain location, to create an itinerary that is centered around making the most of their limited time overseas. 
-
 
 
 ## Usage
@@ -267,7 +266,8 @@ Our code is coded such that it is simple to read without in-depth knowledge of t
 - [ ] Fix current issues
 - [ ] Conduct more rigourous testing
 - [ ] Improve UI/UX
-- [ ] Create poster for splashdown
+- [ ] Create poster for Splashdown
 
+While the app is functional, there are some issues that can cause the app to crash, and that is what we aim to fix going towards Splashdown. Moreover, the FAQ button currently does nothing, and it is something we will need to implement. 
 
 ## Response to Milestone 2 feedback

@@ -39,7 +39,7 @@ public class ItineraryView_RecyclerAdapter extends RecyclerView.Adapter<Itinerar
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder recyclerViewHolder, int i) {
         ItineraryView_RecyclerItem currentItem = mRecyclerList.get(i);
-        recyclerViewHolder.mTextView1.setText("Day " + currentItem.getDay_number());
+        recyclerViewHolder.mTextView1.setText("Day " + currentItem.getDay_number() + "\n");
         recyclerViewHolder.mTextView2.setText(currentItem.getDay());
 
     }

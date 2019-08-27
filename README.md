@@ -265,9 +265,7 @@ Our code is coded such that it is simple to read without in-depth knowledge of t
 ## Development Plan towards Splashdown
 - [ ] Fix current issues
 - [ ] Conduct more rigourous testing
-- [ ] Improve UI/UX
-- [ ] Create poster for Splashdown
+- [x] Improve UI/UX
+- [x] Create poster for Splashdown
 
 While the app is functional, there are some issues that can cause the app to crash, and that is what we aim to fix going towards Splashdown. Moreover, the FAQ button currently does nothing, and it is something we will need to implement. 
-
-## Response to Milestone 2 feedback
